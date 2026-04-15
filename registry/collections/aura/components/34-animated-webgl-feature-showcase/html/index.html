@@ -1,0 +1,331 @@
+<section
+  class="bg-slate-950 text-slate-400 antialiased min-h-screen flex flex-col font-sans selection:bg-indigo-500/30 selection:text-indigo-100"
+  style="background-image: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);">
+  <div class="flex-grow flex items-center justify-center p-4 md:p-8 lg:p-12">
+
+    <!-- Premium Gradient Border Wrapper -->
+    <div class="w-full max-w-[1600px] relative rounded-sm p-[1px] overflow-hidden"
+      style="background: linear-gradient(135deg, rgba(79,70,229,0.3) 0%, rgba(15,23,42,1) 40%, rgba(15,23,42,1) 60%, rgba(168,85,247,0.2) 100%); box-shadow: 0 0 80px rgba(0,0,0,0.8), inset 0 0 20px rgba(79,70,229,0.1);">
+
+      <!-- Inner Content Layout -->
+      <main class="w-full h-full bg-slate-950 relative flex flex-col z-10 rounded-sm">
+
+        <!-- Header Section -->
+        <header
+          class="grid grid-cols-1 lg:grid-cols-2 border-b border-slate-800/60 relative z-20 bg-slate-950/50 backdrop-blur-md">
+          <!-- Left Title -->
+          <div class="p-8 lg:p-16 lg:pr-24 lg:border-r border-slate-800/60 flex items-center relative overflow-hidden">
+            <!-- Subtle ambient glow -->
+            <div
+              class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-900/10 to-transparent pointer-events-none">
+            </div>
+
+            <h1
+              class="text-5xl md:text-6xl lg:text-7xl xl:text-[88px] font-normal tracking-tight text-slate-100 leading-[1.05] z-10">
+              <span class="inline-flex overflow-hidden pb-1"><span class="reveal-word block translate-y-[115%]">Cognitive</span></span><br>
+              <span class="inline-flex overflow-hidden pb-1"><span class="reveal-word block translate-y-[115%]">Architecture</span></span><br>
+              <span class="inline-flex overflow-hidden pb-1"><span class="reveal-word block translate-y-[115%]">Topology</span></span>
+            </h1>
+          </div>
+
+          <!-- Right Description -->
+          <div class="p-8 lg:p-16 flex flex-col justify-end lg:justify-between items-start lg:items-end relative">
+            <div class="flex-grow hidden lg:block"></div>
+            <div class="w-full flex flex-col items-start lg:items-end text-left lg:text-right z-10">
+              <p class="text-sm leading-relaxed mb-6 lg:mb-12 max-w-sm text-slate-400">
+                Bridging the gap between abstract computational models and resilient, high-performance edge
+                infrastructure.
+              </p>
+              <div
+                class="text-xs font-mono tracking-widest text-indigo-400 w-full text-right uppercase pt-4 border-t border-slate-800/60 lg:border-t-0 lg:pt-0">
+                Sequence Alpha — Echo
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Content Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 relative z-10 flex-grow min-h-[600px]">
+
+          <!-- WebGL / Visual Area -->
+          <div
+            class="relative w-full h-[50vh] lg:h-auto min-h-[400px] lg:border-r border-slate-800/60 bg-slate-950 overflow-hidden group">
+
+            <!-- WebGL Canvas Container -->
+            <div id="webgl-canvas-mount" class="absolute inset-0 z-0"></div>
+
+            <!-- Overlay Gradients for integration -->
+            <div class="absolute inset-0 pointer-events-none z-10"
+              style="background: radial-gradient(circle at center, transparent 30%, rgba(2,6,23,0.8) 100%);"></div>
+            <div
+              class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none z-10 lg:hidden">
+            </div>
+          </div>
+
+          <!-- Process List & CTA Area -->
+          <div class="flex flex-col h-full bg-slate-950/80 relative">
+
+            <!-- List Wrapper -->
+            <div class="flex flex-col w-full border-b border-slate-800/60 list-container">
+              <!-- Item 01 -->
+              <div
+                class="list-item flex items-center px-8 lg:px-12 py-5 lg:py-7 border-b border-slate-800/60 hover:bg-slate-900/50 transition-colors duration-300 group cursor-default"
+                style="opacity: 0; transform: translateX(-20px);">
+                <span class="text-xs font-mono text-slate-500 w-16 group-hover:text-indigo-400 transition-colors">01</span>
+                <span class="text-sm text-slate-700 mx-4">—</span>
+                <span class="text-sm md:text-base text-slate-300 group-hover:text-slate-100 transition-colors">Heuristic Analysis</span>
+              </div>
+              <!-- Item 02 -->
+              <div
+                class="list-item flex items-center px-8 lg:px-12 py-5 lg:py-7 border-b border-slate-800/60 hover:bg-slate-900/50 transition-colors duration-300 group cursor-default"
+                style="opacity: 0; transform: translateX(-20px);">
+                <span class="text-xs font-mono text-slate-500 w-16 group-hover:text-indigo-400 transition-colors">02</span>
+                <span class="text-sm text-slate-700 mx-4">—</span>
+                <span class="text-sm md:text-base text-slate-300 group-hover:text-slate-100 transition-colors">Topology Design</span>
+              </div>
+              <!-- Item 03 -->
+              <div
+                class="list-item flex items-center px-8 lg:px-12 py-5 lg:py-7 border-b border-slate-800/60 hover:bg-slate-900/50 transition-colors duration-300 group cursor-default"
+                style="opacity: 0; transform: translateX(-20px);">
+                <span class="text-xs font-mono text-slate-500 w-16 group-hover:text-indigo-400 transition-colors">03</span>
+                <span class="text-sm text-slate-700 mx-4">—</span>
+                <span class="text-sm md:text-base text-slate-300 group-hover:text-slate-100 transition-colors">Neural Synthesis</span>
+              </div>
+              <!-- Item 04 -->
+              <div
+                class="list-item flex items-center px-8 lg:px-12 py-5 lg:py-7 border-b border-slate-800/60 hover:bg-slate-900/50 transition-colors duration-300 group cursor-default"
+                style="opacity: 0; transform: translateX(-20px);">
+                <span class="text-xs font-mono text-slate-500 w-16 group-hover:text-indigo-400 transition-colors">04</span>
+                <span class="text-sm text-slate-700 mx-4">—</span>
+                <span class="text-sm md:text-base text-slate-300 group-hover:text-slate-100 transition-colors">Stateful Execution</span>
+              </div>
+              <!-- Item 05 -->
+              <div
+                class="list-item flex items-center px-8 lg:px-12 py-5 lg:py-7 hover:bg-slate-900/50 transition-colors duration-300 group cursor-default"
+                style="opacity: 0; transform: translateX(-20px);">
+                <span class="text-xs font-mono text-slate-500 w-16 group-hover:text-indigo-400 transition-colors">05</span>
+                <span class="text-sm text-slate-700 mx-4">—</span>
+                <span class="text-sm md:text-base text-slate-300 group-hover:text-slate-100 transition-colors">Edge Distribution</span>
+              </div>
+            </div>
+
+            <!-- CTA Block -->
+            <div class="p-8 lg:p-16 flex-grow flex flex-col justify-end relative overflow-hidden">
+              <!-- Background glow for CTA -->
+              <div class="absolute bottom-0 right-0 w-72 h-72 bg-indigo-900/10 blur-[100px] pointer-events-none"></div>
+
+              <p class="text-sm leading-relaxed mb-8 max-w-[420px] text-slate-400 z-10">
+                Deploying robust neural networks requires precision. Initialize the sequence to align your operational
+                vectors with our deployment grid.
+              </p>
+
+              <div class="flex justify-between items-end z-10 w-full flex-wrap gap-6">
+                <a href="#"
+                  class="group inline-flex items-center gap-2 text-sm text-slate-200 hover:text-white transition-colors relative pb-1">
+                  Commence Sequence
+                  <iconify-icon icon="solar:arrow-right-up-linear" width="1.2em" height="1.2em"
+                    class="text-indigo-400 group-hover:text-indigo-300 transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5 duration-300"></iconify-icon>
+                  <!-- Animated Gradient Underline -->
+                  <div
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-slate-700 group-hover:h-[2px] transition-all duration-300"
+                    style="background: linear-gradient(90deg, rgba(79,70,229,0) 0%, rgba(79,70,229,1) 50%, rgba(79,70,229,0) 100%); background-size: 200% 100%; animation: shimmer 2s infinite linear; opacity: 0;"
+                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
+                  <style>
+                    @keyframes shimmer {
+                      0% {
+                        background-position: 100% 0;
+                      }
+
+                      100% {
+                        background-position: -100% 0;
+                      }
+                    }
+                  </style>
+                </a>
+
+                <!-- Status Badge -->
+                <div
+                  class="flex items-center gap-2 px-3 py-1.5 border border-indigo-900/50 bg-indigo-950/30 backdrop-blur-sm rounded-sm">
+                  <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"
+                    style="box-shadow: 0 0 8px rgba(99,102,241,0.8); animation: pulse-glow 2s infinite;"></div>
+                  <style>
+                    @keyframes pulse-glow {
+
+                      0%,
+                      100% {
+                        opacity: 1;
+                        transform: scale(1);
+                      }
+
+                      50% {
+                        opacity: 0.5;
+                        transform: scale(0.8);
+                      }
+                    }
+                  </style>
+                  <span class="text-xs font-mono text-indigo-300 uppercase tracking-wide">Grid Online</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+            
+            // --- GSAP Animations ---
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Masked Word Reveal for Title
+            gsap.to(".reveal-word", {
+                y: "0%",
+                duration: 1.2,
+                stagger: 0.15,
+                ease: "power4.out",
+                delay: 0.2
+            });
+
+            // 2. Staggered List Items on Scroll
+            gsap.to(".list-item", {
+                scrollTrigger: {
+                    trigger: ".list-container",
+                    start: "top 85%",
+                },
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+
+
+            // --- WebGL Setup (Faceted Geometric Shape) ---
+            const container = document.getElementById('webgl-canvas-mount');
+            if (!container || !window.THREE) return;
+
+            const scene = new THREE.Scene();
+            
+            // Camera
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 6;
+            camera.position.y = 0;
+
+            // Renderer
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            container.appendChild(renderer.domElement);
+
+            // Group for rotation
+            const objectGroup = new THREE.Group();
+            scene.add(objectGroup);
+
+            // Geometry: Dodecahedron creates a distinct faceted crystalline shape
+            const geometry = new THREE.DodecahedronGeometry(1.6, 0); // 0 detail = flat facets
+            
+            // Material: Physically based, metallic, highly reflective, flat shaded
+            const material = new THREE.MeshPhysicalMaterial({
+                color: 0x0f172a,         // Deep slate base
+                metalness: 0.9,          // Highly metallic
+                roughness: 0.15,         // Slightly glossy
+                emissive: 0x1e1b4b,      // Deep purple internal glow
+                emissiveIntensity: 0.4,
+                clearcoat: 1.0,
+                clearcoatRoughness: 0.1,
+                flatShading: true        // CRITICAL: Creates the hard edges/facets
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+            objectGroup.add(mesh);
+
+            // Wireframe Accent (slightly larger to sit on edges)
+            const edgeGeo = new THREE.EdgesGeometry(geometry);
+            const edgeMat = new THREE.LineBasicMaterial({
+                color: 0x6366f1, // Indigo highlight
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending
+            });
+            const wireframe = new THREE.LineSegments(edgeGeo, edgeMat);
+            objectGroup.add(wireframe);
+
+            // Dynamic Lighting
+            // Ambient to lift pure blacks
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+            scene.add(ambientLight);
+
+            // Main directional light (cool white/blue)
+            const mainLight = new THREE.DirectionalLight(0xe0e7ff, 3.0);
+            mainLight.position.set(5, 8, 5);
+            scene.add(mainLight);
+
+            // Secondary colored fill light (purple/magenta)
+            const fillLight = new THREE.DirectionalLight(0xa855f7, 2.0);
+            fillLight.position.set(-5, -2, 2);
+            scene.add(fillLight);
+
+            // Rim light (cyan/indigo) for dramatic edge highlights
+            const rimLight = new THREE.PointLight(0x818cf8, 4, 15);
+            rimLight.position.set(0, 3, -5);
+            scene.add(rimLight);
+
+            // Mouse Interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            const windowHalfX = window.innerWidth / 2;
+            const windowHalfY = window.innerHeight / 2;
+
+            container.addEventListener('mousemove', (event) => {
+                const rect = container.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                mouseX = (x - container.clientWidth / 2) * 0.002;
+                mouseY = (y - container.clientHeight / 2) * 0.002;
+            });
+
+            // Animation Loop
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+                const time = clock.getElapsedTime();
+
+                // Ease toward mouse position
+                targetX += (mouseX - targetX) * 0.05;
+                targetY += (mouseY - targetY) * 0.05;
+
+                // Base rotation + mouse interaction
+                objectGroup.rotation.y = time * 0.2 + targetX;
+                objectGroup.rotation.x = time * 0.1 + targetY;
+                
+                // Floating motion
+                objectGroup.position.y = Math.sin(time * 0.8) * 0.2;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Resize Handler
+            window.addEventListener('resize', () => {
+                if(container && camera && renderer) {
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                }
+            });
+        });
+  </script>
+</section>

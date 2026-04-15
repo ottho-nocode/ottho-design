@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        background: '#050505',
+                        surface: '#121212',
+                        border: 'rgba(255,255,255,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-white min-h-screen overflow-hidden font-sans relative selection:bg-white/20">
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas" class="absolute inset-0 pointer-events-none z-0 opacity-60"></canvas>
+
+    <!-- Simulated Light Beam -->
+    <div class="absolute top-[-10%] right-[10%] w-[60vw] h-[120vh] pointer-events-none z-0" 
+         style="background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%); transform: rotate(-35deg); filter: blur(80px); transform-origin: top center;">
+    </div>
+    <div class="absolute top-[-5%] right-[20%] w-[30vw] h-[100vh] pointer-events-none z-0" 
+         style="background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%); transform: rotate(-35deg); filter: blur(40px); transform-origin: top center;">
+    </div>
+
+    <!-- Main Content Layout -->
+    <main class="relative z-10 container mx-auto px-6 sm:px-12 lg:px-24 min-h-screen flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-0 py-24 lg:py-0">
+        
+        <!-- Left Column: Copy -->
+        <div class="w-full lg:w-5/12 flex flex-col items-start pt-12 lg:pt-0 z-20">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-white/[0.02] backdrop-blur-sm mb-8"
+                 style="box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);">
+                <iconify-icon icon="solar:document-add-linear" width="16" class="text-white/70"></iconify-icon>
+                <span class="text-xs font-medium text-white/80 tracking-wide uppercase">Workspaces</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] text-white mb-6">
+                Bring clarity to <br/>
+                <span class="font-serif italic font-normal text-white/90">— your daily flow.</span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-sm sm:text-base text-white/50 max-w-sm leading-relaxed font-light">
+                Capture objectives, assign responsibilities, and track momentum. A streamlined, distraction-free environment built for high-performing teams.
+            </p>
+        </div>
+
+        <!-- Right Column: 3D UI Composition -->
+        <div class="w-full lg:w-7/12 relative h-[500px] sm:h-[600px] lg:h-[800px] flex items-center justify-center pointer-events-none" style="perspective: 1200px;">
+            
+            <!-- 3D Transform Group -->
+            <div id="scene-container" class="relative w-full max-w-[600px] aspect-square" style="transform-style: preserve-3d; transform: rotateY(-18deg) rotateX(12deg) rotateZ(4deg);">
+                
+                <!-- Background Dashboard Layer -->
+                <div class="absolute inset-0 rounded-2xl border border-border bg-[#0a0a0a]/80 backdrop-blur-xl overflow-hidden shadow-2xl"
+                     style="transform: translateZ(-100px) scale(1.1); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 48px -12px rgba(0,0,0,0.8);">
+                    
+                    <!-- Faded Header -->
+                    <div class="h-16 border-b border-border flex items-center px-6 gap-4 opacity-40">
+                        <span class="text-xs text-white/50">Initiatives</span>
+                        <iconify-icon icon="solar:alt-arrow-right-linear" width="12" class="text-white/30"></iconify-icon>
+                        <span class="text-xs text-white/50">Product Launch - Q4</span>
+                    </div>
+
+                    <!-- Faded Content Area -->
+                    <div class="p-6 opacity-30 flex flex-col gap-6">
+                        <h2 class="text-xl font-medium text-white flex items-center gap-2">
+                            Marketing Site Redesign <iconify-icon icon="solar:link-minimalistic-linear" width="16" class="text-white/50"></iconify-icon>
+                        </h2>
+                        
+                        <div class="grid grid-cols-3 gap-4 mt-8">
+                            <!-- Faded Column -->
+                            <div class="flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs text-white/70">Backlog</span>
+                                    <iconify-icon icon="solar:add-circle-linear" width="16" class="text-white/50"></iconify-icon>
+                                </div>
+                                <div class="h-32 rounded-xl border border-border bg-white/[0.02]"></div>
+                                <div class="h-24 rounded-xl border border-border bg-white/[0.02]"></div>
+                            </div>
+                             <!-- Faded Column -->
+                             <div class="flex flex-col gap-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs text-white/70">Review</span>
+                                    <iconify-icon icon="solar:add-circle-linear" width="16" class="text-white/50"></iconify-icon>
+                                </div>
+                                <div class="h-24 rounded-xl border border-border bg-white/[0.02]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Foreground Cards -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center gap-6" style="transform: translateZ(50px);">
+                    
+                    <!-- Card 1: In Progress -->
+                    <div id="card-1" class="w-[90%] sm:w-[420px] rounded-2xl bg-[#141414]/90 backdrop-blur-2xl border border-border p-1"
+                         style="box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1); transform: translateX(20px) translateY(-30px);">
+                        
+                        <!-- Card Header -->
+                        <div class="flex items-center justify-between px-4 py-3 border-b border-white/[0.04]">
+                            <span class="text-xs font-medium text-white/80">Active Phase</span>
+                            <div class="flex items-center gap-2 text-white/40">
+                                <iconify-icon icon="solar:add-linear" width="16"></iconify-icon>
+                                <iconify-icon icon="solar:menu-dots-bold" width="16"></iconify-icon>
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 flex flex-col gap-4">
+                            <!-- Meta Row -->
+                            <div class="flex items-center gap-3">
+                                <div class="px-2.5 py-1 rounded bg-[#3A1D1D] text-[#FF8A8A] text-[10px] font-medium tracking-wide">
+                                    Urgent
+                                </div>
+                                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded border border-white/[0.05] bg-white/[0.02] text-xs text-white/60">
+                                    <iconify-icon icon="solar:calendar-linear" width="14"></iconify-icon>
+                                    Dec 12, 2024
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div>
+                                <h3 class="text-base text-white font-medium mb-1.5 tracking-tight">Database Migration Strategy</h3>
+                                <p class="text-xs text-white/40 leading-relaxed font-light line-clamp-2">
+                                    Outline the steps required to migrate the legacy user database to the new PostgreSQL cluster with zero downtime.
+                                </p>
+                            </div>
+
+                            <!-- Progress -->
+                            <div class="mt-2">
+                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-white/40 to-white/80 rounded-full w-3/4"></div>
+                                </div>
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="flex items-center justify-between mt-1 pt-4 border-t border-white/[0.04]">
+                                <!-- Avatars -->
+                                <div class="flex items-center -space-x-2">
+                                    <div class="w-6 h-6 rounded-full border-2 border-[#141414] bg-neutral-700 flex items-center justify-center text-[8px] text-white/80">JD</div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-[#141414] bg-neutral-600 flex items-center justify-center text-[8px] text-white/80">AL</div>
+                                    <div class="w-6 h-6 rounded-full border-2 border-[#141414] bg-neutral-800 flex items-center justify-center text-[8px] text-white/50">+3</div>
+                                </div>
+                                <!-- Stats -->
+                                <div class="flex items-center gap-3 text-white/40 text-xs">
+                                    <div class="flex items-center gap-1">
+                                        <iconify-icon icon="solar:paperclip-linear" width="14"></iconify-icon>
+                                        <span>4</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <iconify-icon icon="solar:chat-line-linear" width="14"></iconify-icon>
+                                        <span>12</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Secondary Task -->
+                    <div id="card-2" class="w-[90%] sm:w-[420px] rounded-2xl bg-[#141414]/90 backdrop-blur-2xl border border-border p-1"
+                         style="box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05); transform: translateX(-30px) translateY(10px);">
+                        
+                        <div class="p-5 flex flex-col gap-4">
+                             <!-- Header Right Action -->
+                             <div class="absolute top-4 right-4 text-white/30">
+                                <iconify-icon icon="solar:menu-dots-bold" width="16"></iconify-icon>
+                            </div>
+
+                            <!-- Meta Row -->
+                            <div class="flex items-center gap-3">
+                                <div class="px-2.5 py-1 rounded bg-[#1D3A24] text-[#8AFFB1] text-[10px] font-medium tracking-wide">
+                                    Normal
+                                </div>
+                                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded border border-white/[0.05] bg-white/[0.02] text-xs text-white/60">
+                                    <iconify-icon icon="solar:calendar-linear" width="14"></iconify-icon>
+                                    Jan 05, 2025
+                                </div>
+                            </div>
+
+                            <!-- Content -->
+                            <div class="pr-6">
+                                <h3 class="text-base text-white font-medium mb-1.5 tracking-tight">User Interview Synthesis</h3>
+                                <p class="text-xs text-white/40 leading-relaxed font-light line-clamp-2">
+                                    Collate findings from the recent batch of enterprise customer interviews to identify feature gaps.
+                                </p>
+                            </div>
+
+                            <!-- Progress -->
+                            <div class="mt-2 flex items-center justify-between gap-4">
+                                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-white/40 to-white/80 rounded-full w-[30%]"></div>
+                                </div>
+                                <span class="text-[10px] text-white/40 whitespace-nowrap">2 / 7</span>
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="flex items-center justify-between mt-1 pt-4 border-t border-white/[0.04]">
+                                <!-- Avatars -->
+                                <div class="flex items-center -space-x-2">
+                                    <div class="w-6 h-6 rounded-full border-2 border-[#141414] bg-neutral-600 flex items-center justify-center text-[8px] text-white/80">MK</div>
+                                </div>
+                                <!-- Stats -->
+                                <div class="flex items-center gap-3 text-white/40 text-xs">
+                                    <div class="flex items-center gap-1">
+                                        <iconify-icon icon="solar:paperclip-linear" width="14"></iconify-icon>
+                                        <span>1</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <iconify-icon icon="solar:chat-line-linear" width="14"></iconify-icon>
+                                        <span>3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Interactive & Animation Logic -->
+    <script>
+        // --- Particle System (WebGL simulation) ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = -Math.random() * 0.5 - 0.1;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < 0) {
+                    this.y = height;
+                    this.x = Math.random() * width;
+                }
+                if (this.x < 0 || this.x > width) {
+                    this.speedX *= -1;
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 150; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => { resize(); initParticles(); });
+        resize();
+        initParticles();
+        animateParticles();
+
+        // --- Smooth Floating Animation for 3D Scene ---
+        const scene = document.getElementById('scene-container');
+        const card1 = document.getElementById('card-1');
+        const card2 = document.getElementById('card-2');
+        let time = 0;
+
+        function animateScene() {
+            time += 0.01;
+            
+            // Subtle container rotation
+            const rotY = -18 + Math.sin(time) * 2;
+            const rotX = 12 + Math.cos(time * 0.8) * 1.5;
+            scene.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg) rotateZ(4deg)`;
+
+            // Independent card floating
+            const c1Y = -30 + Math.sin(time * 1.5) * 8;
+            card1.style.transform = `translateX(20px) translateY(${c1Y}px)`;
+
+            const c2Y = 10 + Math.cos(time * 1.2) * 6;
+            card2.style.transform = `translateX(-30px) translateY(${c2Y}px)`;
+
+            requestAnimationFrame(animateScene);
+        }
+        
+        animateScene();
+    </script>
+</body>
+</html>

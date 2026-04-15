@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova — Bento Grid Component</title>
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#050514">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" async></script>
+  <style>
+    /* ============================================
+   CUSTOM PROPERTIES
+   ============================================ */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @property --border-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    :root {
+      --bg: #050514;
+      --bg-alt: #0a0a1e;
+      --accent: #f59e0b;
+      --accent2: #fbbf24;
+      --accent3: #fb923c;
+      --pink: #f97316;
+      --gold: #fde68a;
+      --text: #e8edf3;
+      --text-muted: #94a3b8;
+      --text-dim: #4b5e78;
+      --border: rgba(245, 158, 11, 0.10);
+      --glow: rgba(245, 158, 11, 0.06);
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* ============================================
+   RESET & BASE
+   ============================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::selection {
+      background: rgba(245, 158, 11, 0.35);
+      color: #f0e6ff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.4);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(245, 158, 11, 0.6);
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      mix-blend-mode: overlay;
+      transform: translateZ(0);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================
+   TYPOGRAPHY
+   ============================================ */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-heading);
+      font-weight: 200;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 400;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent2);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .section-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ============================================
+   ANIMATIONS
+   ============================================ */
+    @keyframes bar-grow {
+      from {
+        transform: scaleY(0);
+      }
+
+      to {
+        transform: scaleY(var(--h));
+      }
+    }
+
+    @keyframes progress-fill {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: var(--w);
+      }
+    }
+
+    @keyframes slideInRow {
+      from {
+        opacity: 0;
+        transform: translateX(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInLine {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes line-shimmer {
+      0% {
+        background-position: -200% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    @keyframes node-pulse {
+
+      0%,
+      100% {
+        opacity: 0.7;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* Reveal system */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .stagger-up .reveal-child {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .stagger-up.visible .reveal-child {
+      opacity: 1;
+      transform: none;
+    }
+
+    .stagger-up.visible .reveal-child:nth-child(1) {
+      transition-delay: 0ms;
+    }
+
+    .stagger-up.visible .reveal-child:nth-child(2) {
+      transition-delay: 80ms;
+    }
+
+    .stagger-up.visible .reveal-child:nth-child(3) {
+      transition-delay: 160ms;
+    }
+
+    .stagger-up.visible .reveal-child:nth-child(4) {
+      transition-delay: 240ms;
+    }
+
+    .stagger-up.visible .reveal-child:nth-child(5) {
+      transition-delay: 320ms;
+    }
+
+    .stagger-up.visible .reveal-child:nth-child(6) {
+      transition-delay: 400ms;
+    }
+
+    /* ============================================
+   BENTO GRID
+   ============================================ */
+    .bento-section {
+      padding: 120px 0;
+      position: relative;
+      contain: layout style;
+    }
+
+    .bento-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(rgba(245, 158, 11, 0.12) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black, transparent);
+      -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black, transparent);
+      pointer-events: none;
+    }
+
+    .bento-section .section-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(245, 158, 11, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .bento-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .bento-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .bento-card.w2 {
+      grid-column: span 2;
+    }
+
+    .bento-card {
+      position: relative;
+      padding: 28px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    /* Top-edge glow line on hover */
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent2), var(--accent), var(--accent2), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease, left 0.4s ease, right 0.4s ease;
+      pointer-events: none;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(245, 158, 11, 0.15);
+      background: rgba(255, 255, 255, 0.045);
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.06), 0 0 0 1px rgba(245, 158, 11, 0.05);
+    }
+
+    .bento-card:hover::before {
+      opacity: 1;
+      left: 10%;
+      right: 10%;
+    }
+
+    .bento-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .bento-card p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* ----- WIDGET: Bar Chart ----- */
+    .widget-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 80px;
+      padding-top: 8px;
+    }
+
+    .widget-bars .bar {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(to top, var(--accent), var(--pink));
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .bento-card.animated .widget-bars .bar {
+      animation: bar-grow 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(7) {
+      animation-delay: 0.7s;
+    }
+
+    .bento-card.animated .widget-bars .bar:nth-child(8) {
+      animation-delay: 0.8s;
+    }
+
+    /* ----- WIDGET: Status Rows ----- */
+    .widget-status {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .widget-status .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+
+    .bento-card.animated .status-row {
+      animation: slideInRow 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .bento-card.animated .status-row:nth-child(1) {
+      animation-delay: 0.15s;
+    }
+
+    .bento-card.animated .status-row:nth-child(2) {
+      animation-delay: 0.25s;
+    }
+
+    .bento-card.animated .status-row:nth-child(3) {
+      animation-delay: 0.35s;
+    }
+
+    .bento-card.animated .status-row:nth-child(4) {
+      animation-delay: 0.45s;
+    }
+
+    .bento-card.animated .status-row:nth-child(5) {
+      animation-delay: 0.55s;
+    }
+
+    .status-row .label {
+      color: var(--text-muted);
+    }
+
+    .status-row .value {
+      font-weight: 500;
+    }
+
+    .status-row .value.green {
+      color: #34d399;
+    }
+
+    .status-row .value.yellow {
+      color: var(--gold);
+    }
+
+    .status-row .value.violet {
+      color: var(--accent2);
+    }
+
+    /* ----- WIDGET: Progress Bars ----- */
+    .widget-progress {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .progress-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .progress-item .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--pink));
+      width: 0;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: line-shimmer 2s ease-in-out infinite;
+    }
+
+    .bento-card.animated .progress-fill {
+      animation: progress-fill 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .bento-card.animated .progress-item:nth-child(1) .progress-fill {
+      animation-delay: 0.2s;
+    }
+
+    .bento-card.animated .progress-item:nth-child(2) .progress-fill {
+      animation-delay: 0.35s;
+    }
+
+    .bento-card.animated .progress-item:nth-child(3) .progress-fill {
+      animation-delay: 0.5s;
+    }
+
+    .bento-card.animated .progress-item:nth-child(4) .progress-fill {
+      animation-delay: 0.65s;
+    }
+
+    /* ----- WIDGET: Log Stream ----- */
+    .widget-logs {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .log-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.3);
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      opacity: 0;
+    }
+
+    .bento-card.animated .log-line {
+      animation: fadeInLine 0.4s ease forwards;
+    }
+
+    .bento-card.animated .log-line:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .bento-card.animated .log-line:nth-child(2) {
+      animation-delay: 0.35s;
+    }
+
+    .bento-card.animated .log-line:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+
+    .bento-card.animated .log-line:nth-child(4) {
+      animation-delay: 0.65s;
+    }
+
+    .bento-card.animated .log-line:nth-child(5) {
+      animation-delay: 0.8s;
+    }
+
+    .bento-card.animated .log-line:nth-child(6) {
+      animation-delay: 0.95s;
+    }
+
+    .log-time {
+      color: var(--text-dim);
+    }
+
+    .log-method {
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .log-method.get {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+    }
+
+    .log-method.post {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--accent2);
+    }
+
+    .log-method.put {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold);
+    }
+
+    .log-method.del {
+      background: rgba(244, 114, 182, 0.15);
+      color: var(--pink);
+    }
+
+    .log-msg {
+      color: var(--text-muted);
+    }
+
+    /* ----- WIDGET: Node Grid ----- */
+    .widget-nodes {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .node-dot {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .node-dot.active {
+      background: var(--accent);
+      animation: node-pulse 2s ease-in-out infinite;
+    }
+
+    .bento-card.animated .node-dot {
+      animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .bento-card.animated .node-dot.active {
+      animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, node-pulse 2s ease-in-out infinite 0.5s;
+    }
+
+    /* ----- WIDGET: Metric Cards ----- */
+    .widget-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .mini-metric {
+      padding: 12px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(245, 158, 11, 0.08);
+      text-align: center;
+    }
+
+    .mini-metric .metric-value {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .mini-metric .metric-label {
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================
+   RESPONSIVE
+   ============================================ */
+    @media (max-width: 1024px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bento-card.w2 {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .bento-section {
+        padding: 80px 0 !important;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-card.w2 {
+        grid-column: span 1;
+      }
+
+      .bento-card {
+        padding: 22px;
+      }
+
+      .bento-header {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .bento-section {
+        padding: 60px 0 !important;
+      }
+
+      .bento-card {
+        padding: 18px;
+      }
+
+      .bento-card .mini-metric .metric-value {
+        font-size: 1.4rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
+      }
+
+      .section-desc {
+        font-size: 0.82rem;
+      }
+
+      .eyebrow {
+        font-size: 0.65rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="bento-section" id="features">
+    <div class="section-glow"></div>
+    <div class="container">
+      <div class="bento-header reveal">
+        <div class="eyebrow">Features</div>
+        <h2 class="section-title">Everything you need</h2>
+        <p class="section-desc">A complete platform for deploying and managing AI workloads at any scale, with the tools
+          your team actually wants to use.</p>
+      </div>
+      <div class="bento-grid stagger-up">
+        <!-- Row 1: Two wide cards -->
+        <div class="bento-card w2 reveal-child">
+          <h3>Real-time Analytics</h3>
+          <p>Monitor inference throughput, latency percentiles, and token usage across all deployed models.</p>
+          <div class="widget-bars">
+            <div class="bar" style="--h:0.35;height:100%"></div>
+            <div class="bar" style="--h:0.55;height:100%"></div>
+            <div class="bar" style="--h:0.8;height:100%"></div>
+            <div class="bar" style="--h:0.45;height:100%"></div>
+            <div class="bar" style="--h:0.92;height:100%"></div>
+            <div class="bar" style="--h:0.65;height:100%"></div>
+            <div class="bar" style="--h:0.75;height:100%"></div>
+            <div class="bar" style="--h:0.5;height:100%"></div>
+          </div>
+        </div>
+        <div class="bento-card w2 reveal-child">
+          <h3>Request Logging</h3>
+          <p>Full request tracing with structured logs, latency breakdown, and cost attribution.</p>
+          <div class="widget-logs">
+            <div class="log-line">
+              <span class="log-time">12:04:21</span><span class="log-method get">GET</span><span class="log-msg">/v1/models — 200 2ms</span>
+            </div>
+            <div class="log-line">
+              <span class="log-time">12:04:22</span><span class="log-method post">POST</span><span class="log-msg">/v1/completions — 200 48ms</span>
+            </div>
+            <div class="log-line">
+              <span class="log-time">12:04:23</span><span class="log-method post">POST</span><span class="log-msg">/v1/embeddings — 200 12ms</span>
+            </div>
+            <div class="log-line">
+              <span class="log-time">12:04:24</span><span class="log-method put">PUT</span><span class="log-msg">/v1/models/cfg — 200 5ms</span>
+            </div>
+            <div class="log-line">
+              <span class="log-time">12:04:25</span><span class="log-method get">GET</span><span class="log-msg">/v1/health — 200 1ms</span>
+            </div>
+            <div class="log-line">
+              <span class="log-time">12:04:26</span><span class="log-method del">DEL</span><span class="log-msg">/v1/cache/stale — 204 3ms</span>
+            </div>
+          </div>
+        </div>
+        <!-- Row 2: Four compact cards -->
+        <div class="bento-card reveal-child">
+          <h3>Health Monitoring</h3>
+          <p>Track GPU utilization and model health with instant alerting.</p>
+          <div class="widget-status">
+            <div class="status-row"><span class="label">gpu-cluster-01</span><span class="value green">98.2%</span>
+            </div>
+            <div class="status-row"><span class="label">gpu-cluster-02</span><span class="value green">94.7%</span>
+            </div>
+            <div class="status-row"><span class="label">inference-pool</span><span class="value yellow">87.1%</span>
+            </div>
+            <div class="status-row"><span class="label">model-cache</span><span class="value green">99.9%</span></div>
+          </div>
+        </div>
+        <div class="bento-card reveal-child">
+          <h3>Resource Optimization</h3>
+          <p>Right-size GPU allocations to minimize cost automatically.</p>
+          <div class="widget-progress">
+            <div class="progress-item">
+              <div class="progress-label"><span>GPU Memory</span><span>78%</span></div>
+              <div class="progress-track">
+                <div class="progress-fill" style="--w:78%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label"><span>Compute</span><span>92%</span></div>
+              <div class="progress-track">
+                <div class="progress-fill" style="--w:92%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label"><span>Bandwidth</span><span>45%</span></div>
+              <div class="progress-track">
+                <div class="progress-fill" style="--w:45%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bento-card reveal-child">
+          <h3>Cluster Topology</h3>
+          <p>Visualize node status and allocation in real time.</p>
+          <div class="widget-nodes" id="node-grid"></div>
+        </div>
+        <div class="bento-card reveal-child">
+          <h3>Cost Intelligence</h3>
+          <p>Granular cost breakdown per model with budget alerts.</p>
+          <div class="widget-metrics">
+            <div class="mini-metric">
+              <div class="metric-value" data-count="2.4">0</div>
+              <div class="metric-label">Cost/1K</div>
+            </div>
+            <div class="mini-metric">
+              <div class="metric-value" data-count="847">0</div>
+              <div class="metric-label">RPS</div>
+            </div>
+            <div class="mini-metric">
+              <div class="metric-value" data-count="34">0</div>
+              <div class="metric-label">% Saved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+  'use strict';
+
+  // ============================================
+  // INTERSECTION OBSERVER REVEALS
+  // ============================================
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .stagger-up').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // ============================================
+  // BENTO WIDGET ANIMATIONS (IntersectionObserver)
+  // ============================================
+  const widgetObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        widgetObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.bento-card').forEach(card => widgetObserver.observe(card));
+
+  // ============================================
+  // NODE GRID GENERATION
+  // ============================================
+  const nodeGrid = document.getElementById('node-grid');
+  if (nodeGrid) {
+    const activeIndices = [2,5,7,9,10,14,15,17,19,21,23];
+    for (let i = 0; i < 24; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'node-dot' + (activeIndices.includes(i) ? ' active' : '');
+      dot.style.animationDelay = (i * 0.04) + 's';
+      nodeGrid.appendChild(dot);
+    }
+  }
+
+  // ============================================
+  // MINI METRIC COUNTER ANIMATION
+  // ============================================
+  const miniCounterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        miniCounterObserver.unobserve(el);
+        const target = parseFloat(el.dataset.count);
+        setTimeout(() => {
+          const start = performance.now();
+          function tick(now) {
+            const t = Math.min((now - start) / 1500, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            const v = target * ease;
+            if (target < 10) {
+              el.textContent = '$' + v.toFixed(1);
+            } else if (target >= 100) {
+              el.textContent = Math.floor(v).toLocaleString();
+            } else {
+              el.textContent = Math.floor(v) + '%';
+            }
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }, 300);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.mini-metric .metric-value[data-count]').forEach(el => {
+    miniCounterObserver.observe(el);
+  });
+
+  // ============================================
+  // AMBIENT WIDGET ANIMATIONS (continuous after entrance)
+  // ============================================
+
+  // Bar height ambient cycling
+  function startBarAmbient() {
+    const bars = document.querySelectorAll('.widget-bars .bar');
+    if (!bars.length) return;
+    setInterval(() => {
+      bars.forEach(bar => {
+        const baseH = parseFloat(bar.style.getPropertyValue('--h')) || 0.5;
+        const newH = Math.max(0.15, Math.min(1, baseH + (Math.random() - 0.5) * 0.25));
+        bar.style.setProperty('--h', newH);
+        bar.style.transform = 'scaleY(' + newH + ')';
+      });
+    }, 2000);
+  }
+
+  // Log stream cycling
+  function startLogAmbient() {
+    const logContainer = document.querySelector('.widget-logs');
+    if (!logContainer) return;
+    const methods = [
+      { cls: 'get', label: 'GET' },
+      { cls: 'post', label: 'POST' },
+      { cls: 'put', label: 'PUT' },
+      { cls: 'del', label: 'DEL' }
+    ];
+    const paths = [
+      '/v1/models — 200 2ms',
+      '/v1/completions — 200 48ms',
+      '/v1/embeddings — 200 12ms',
+      '/v1/models/cfg — 200 5ms',
+      '/v1/health — 200 1ms',
+      '/v1/cache/stale — 204 3ms',
+      '/v1/inference — 200 33ms',
+      '/v1/metrics — 200 4ms',
+      '/v1/tokens — 200 7ms'
+    ];
+
+    setInterval(() => {
+      const now = new Date();
+      const ts = now.toTimeString().slice(0, 8);
+      const method = methods[Math.floor(Math.random() * methods.length)];
+      const path = paths[Math.floor(Math.random() * paths.length)];
+
+      const newLine = document.createElement('div');
+      newLine.className = 'log-line';
+      newLine.style.opacity = '1';
+      newLine.innerHTML = '<span class="log-time">' + ts + '</span><span class="log-method ' + method.cls + '">' + method.label + '</span><span class="log-msg">' + path + '</span>';
+
+      logContainer.appendChild(newLine);
+
+      // Remove oldest if more than 6 lines
+      while (logContainer.children.length > 6) {
+        logContainer.removeChild(logContainer.firstChild);
+      }
+    }, 3000);
+  }
+
+  // Node grid toggling
+  function startNodeAmbient() {
+    const nodes = document.querySelectorAll('.node-dot');
+    if (!nodes.length) return;
+    setInterval(() => {
+      const idx = Math.floor(Math.random() * nodes.length);
+      nodes[idx].classList.toggle('active');
+    }, 1500);
+  }
+
+  // Start ambient animations after a delay to let entrance animations finish
+  setTimeout(() => {
+    startBarAmbient();
+    startLogAmbient();
+    startNodeAmbient();
+  }, 2500);
+
+})();
+  </script>
+</body>
+
+</html>

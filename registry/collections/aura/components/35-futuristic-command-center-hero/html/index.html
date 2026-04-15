@@ -1,0 +1,369 @@
+<section
+  class="bg-[#020617] text-slate-100 font-manrope min-h-screen flex items-center justify-center antialiased selection:bg-blue-500/30 overflow-x-hidden relative m-0">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    .font-manrope {
+      font-family: 'Manrope', sans-serif;
+    }
+
+    /* Subtle Technical Dot Grid */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Skeuomorphic Layering Utilities */
+    .skeuo-surface {
+      background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+      box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.8),
+        0 10px 30px -10px rgba(0, 0, 0, 0.9);
+    }
+
+    .skeuo-panel {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.3) 0%, rgba(2, 6, 23, 0.8) 100%);
+      box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.02),
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .skeuo-button {
+      box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 0 rgba(0, 0, 0, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Animations */
+    @keyframes drift {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(0.5deg);
+      }
+
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 10px rgba(96, 165, 250, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.6);
+      }
+    }
+
+    .animate-drift {
+      animation: drift 10s ease-in-out infinite;
+    }
+
+    .stagger-1 {
+      animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    .stagger-2 {
+      animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .stagger-3 {
+      animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    }
+
+    .glow-pulse {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+  </style>
+  <link id="all-fonts-link-font-geist" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-geist">
+    .font-geist {
+      font-family: 'Geist', sans-serif !important;
+    }
+  </style>
+
+  <canvas id="webgl-canvas" class="absolute inset-0 z-0 w-full h-full pointer-events-none opacity-60"></canvas>
+
+  <div class="absolute inset-0 z-0 pointer-events-none bg-grid-pattern opacity-50 mix-blend-screen"></div>
+
+  <div
+    class="w-full max-w-[1400px] mx-auto relative z-10 p-4 sm:p-8 lg:p-12 min-h-screen flex items-center justify-center">
+
+    <!-- Structural Container Boundary Framework -->
+    <div class="absolute inset-4 sm:inset-8 lg:inset-12 pointer-events-none border border-slate-800/50 z-20">
+      <!-- L-Shaped Corner Brackets -->
+      <div class="absolute -top-[1px] -left-[1px] w-4 h-4 border-t border-l border-slate-500/50"></div>
+      <div class="absolute -top-[1px] -right-[1px] w-4 h-4 border-t border-r border-slate-500/50"></div>
+      <div class="absolute -bottom-[1px] -left-[1px] w-4 h-4 border-b border-l border-slate-500/50"></div>
+      <div class="absolute -bottom-[1px] -right-[1px] w-4 h-4 border-b border-r border-slate-500/50"></div>
+    </div>
+
+    <!-- Premium Gradient Border Wrapper -->
+    <div
+      class="w-full relative rounded-[2px] bg-gradient-to-b from-slate-700/50 via-slate-800/20 to-slate-900/50 p-[1px] shadow-[0_20px_60px_-15px_rgba(0,0,0,1)] animate-drift">
+
+      <!-- Inner Skeuomorphic Interface Grid -->
+      <div
+        class="relative w-full skeuo-surface rounded-[1px] overflow-hidden flex flex-col lg:grid lg:grid-cols-12 border border-black/50 backdrop-blur-sm">
+
+        <!-- Inner Divider Lines (Grid Gap Simulation) -->
+        <div class="absolute top-0 bottom-0 left-[66.666%] w-px bg-slate-800/80 hidden lg:block z-20"></div>
+
+        <!-- Left Hero Panel (Columns 1-8) -->
+        <div
+          class="lg:col-span-8 relative p-8 sm:p-12 lg:p-20 flex flex-col justify-between min-h-[500px] lg:min-h-[700px] group overflow-hidden">
+
+          <!-- Top Metadata Layer -->
+          <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-16 stagger-1">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-8 h-8 rounded-[2px] bg-slate-800/80 skeuo-button flex items-center justify-center border border-slate-700/50 text-blue-400">
+                <iconify-icon icon="solar:shield-network-line" width="20" stroke-width="1.5"></iconify-icon>
+              </div>
+              <span class="text-xs uppercase tracking-[0.2em] font-medium text-slate-300 font-geist">AEGIS / Protocol</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500 glow-pulse"></div>
+              <span class="text-xs uppercase tracking-widest text-slate-500 font-geist">System Nominal</span>
+            </div>
+          </div>
+
+          <!-- Monumental Typography -->
+          <div class="relative z-10 my-auto py-12">
+            <h1
+              class="text-5xl sm:text-7xl lg:text-[7.5rem] font-light uppercase tracking-tighter leading-[0.85] text-slate-100 flex flex-col gap-2">
+              <span class="stagger-1 text-slate-50 tracking-tight font-geist font-light">Orbital</span>
+              <span class="stagger-2 text-slate-300 tracking-tight font-geist font-light">Command</span>
+              <span class="stagger-3 text-slate-500 tracking-tight font-geist font-light">Framework</span>
+            </h1>
+            <p
+              class="mt-8 text-sm sm:text-base text-slate-400 max-w-md font-light leading-relaxed tracking-wide stagger-3 border-l border-blue-500/30 pl-4 font-geist">
+              Deploying decentralized logic structures across high-latency environments. Synchronizing telemetry
+              databanks with secure off-world relay nodes.
+            </p>
+          </div>
+
+          <!-- Bottom Functional Bar -->
+          <div
+            class="relative z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 pt-12 border-t border-slate-800/60 stagger-3">
+            <div class="flex flex-col gap-1">
+              <span class="text-xs uppercase tracking-widest text-slate-600 font-geist">Session ID</span>
+              <span class="text-sm tracking-widest text-slate-300 font-medium font-geist">AX-902.44.1</span>
+            </div>
+
+            <button class="px-6 py-3 skeuo-button bg-slate-800/50 border border-slate-700/50 rounded-[2px] text-xs uppercase tracking-widest text-slate-200 hover:bg-slate-700 hover:text-white transition-all duration-300 flex items-center gap-3 group/btn font-geist">
+                            Initialize Sequence
+                            <iconify-icon icon="solar:arrow-right-line" width="16" class="transform group-hover/btn:translate-x-1 transition-transform"></iconify-icon>
+                        </button>
+          </div>
+        </div>
+
+        <!-- Right Modular Stack (Columns 9-12) -->
+        <div class="lg:col-span-4 flex flex-col border-t lg:border-t-0 border-slate-800/80 relative z-10 bg-black/20">
+
+          <!-- Module 1: Telemetry -->
+          <div
+            class="flex-1 skeuo-panel p-8 sm:p-10 flex flex-col justify-between group hover:bg-[#0b1120] transition-colors duration-700 border-b border-slate-800/80">
+            <div class="flex justify-between items-start mb-12 stagger-1">
+              <div class="flex flex-col gap-1">
+                <span class="text-xs uppercase tracking-widest text-slate-500 font-geist">Active Relays</span>
+                <div
+                  class="text-6xl font-light tracking-tighter text-slate-100 leading-none mt-2 number-counter font-geist"
+                  data-target="8240">0</div>
+              </div>
+              <iconify-icon icon="solar:radar-2-line" width="28"
+                class="text-slate-600 group-hover:text-blue-400 transition-colors duration-500"></iconify-icon>
+            </div>
+
+            <div class="mt-auto pt-6">
+              <div class="w-full h-[2px] bg-slate-800 relative overflow-hidden">
+                <div
+                  class="absolute top-0 left-0 h-full bg-blue-500/50 w-[78%] group-hover:bg-blue-400 transition-colors duration-500 shadow-[0_0_10px_rgba(96,165,250,0.5)]">
+                </div>
+              </div>
+              <div class="flex justify-between mt-3">
+                <span class="text-xs uppercase tracking-widest text-slate-600 font-geist">Bandwidth Load</span>
+                <span class="text-xs font-medium tracking-widest text-blue-400 font-geist">78%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 2: Security -->
+          <div
+            class="flex-1 skeuo-panel p-8 sm:p-10 flex flex-col justify-between group hover:bg-[#0b1120] transition-colors duration-700">
+            <div class="flex justify-between items-start mb-12 stagger-2">
+              <div class="flex flex-col gap-1">
+                <span class="text-xs uppercase tracking-widest text-slate-500 font-geist">Threat Matrix</span>
+                <div
+                  class="text-6xl font-light tracking-tighter text-slate-100 leading-none mt-2 number-counter font-geist"
+                  data-target="14">0</div>
+              </div>
+              <iconify-icon icon="solar:shield-warning-line" width="28"
+                class="text-slate-600 group-hover:text-slate-300 transition-colors duration-500"></iconify-icon>
+            </div>
+
+            <div class="mt-auto flex items-center justify-between pt-6 border-t border-slate-800/50">
+              <div class="flex items-center gap-3">
+                <iconify-icon icon="solar:lock-password-line" width="16" class="text-slate-500"></iconify-icon>
+                <span class="text-xs uppercase tracking-widest text-slate-400 font-geist">Encryption Level</span>
+              </div>
+              <span class="text-xs uppercase tracking-widest text-slate-200 font-geist">Quantum</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Number Counter Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.number-counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2500;
+                let startTime = null;
+                
+                const easeOutQuart = (t) => 1 - (--t) * t * t * t;
+                
+                const updateCounter = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const easedProgress = easeOutQuart(progress);
+                    
+                    counter.innerText = Math.floor(easedProgress * target).toLocaleString();
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                
+                setTimeout(() => requestAnimationFrame(updateCounter), 600);
+            });
+        });
+
+        // Generative WebGL 3D Background
+        const initWebGL = () => {
+            const canvas = document.getElementById('webgl-canvas');
+            const scene = new THREE.Scene();
+            
+            const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 25;
+            camera.position.x = 8; // Offset right
+            
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Faceted Architectural Shape
+            const geometry = new THREE.IcosahedronGeometry(7, 1); 
+            
+            // Premium Physical Material (Dark Chrome / Slate)
+            const material = new THREE.MeshPhysicalMaterial({
+                color: 0x0f172a,      // Navy Base
+                emissive: 0x020617,   // Deep shadow emit
+                metalness: 0.9,       // Highly metallic
+                roughness: 0.2,       // Slightly polished
+                flatShading: true,    // Faceted look
+                clearcoat: 0.1,
+                clearcoatRoughness: 0.1
+            });
+            
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            // Technical Wireframe Overlay
+            const wireframeMaterial = new THREE.LineBasicMaterial({ 
+                color: 0x334155, // Slate gray wire
+                transparent: true, 
+                opacity: 0.15 
+            });
+            const wireframe = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), wireframeMaterial);
+            mesh.add(wireframe);
+
+            // Lighting Setup
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.3); // Dim overall
+            scene.add(ambientLight);
+
+            // Primary Edge Light
+            const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.5);
+            dirLight1.position.set(10, 20, 10);
+            scene.add(dirLight1);
+
+            // Accent Glow (Cornflower Blue)
+            const pointLight = new THREE.PointLight(0x60a5fa, 2, 50);
+            pointLight.position.set(-5, -5, 5);
+            scene.add(pointLight);
+
+            // Animation Loop
+            let time = 0;
+            const animate = () => {
+                requestAnimationFrame(animate);
+                time += 0.002;
+                
+                // Slow cinematic drift
+                mesh.rotation.x = time * 0.4;
+                mesh.rotation.y = time * 0.6;
+                mesh.rotation.z = time * 0.2;
+                
+                // Subtle floating
+                mesh.position.y = Math.sin(time * 3) * 0.5;
+                
+                // Mouse parallax effect
+                mesh.rotation.x += (mouseY - mesh.rotation.x) * 0.02;
+                mesh.rotation.y += (mouseX - mesh.rotation.y) * 0.02;
+
+                renderer.render(scene, camera);
+            };
+
+            // Subtle Mouse Tracking
+            let mouseX = 0;
+            let mouseY = 0;
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 0.5 - 0.25;
+                mouseY = (event.clientY / window.innerHeight) * 0.5 - 0.25;
+            });
+
+            // Resize Handler
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            animate();
+        };
+
+        if (typeof THREE !== 'undefined') {
+            initWebGL();
+        }
+  </script>
+</section>

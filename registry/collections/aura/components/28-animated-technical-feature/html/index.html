@@ -1,0 +1,280 @@
+<section class="text-[#ededed] min-h-screen flex items-center justify-center relative font-sans antialiased overflow-x-hidden selection:bg-white/20" style="background-color: #050505; background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 8px);">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[80vw] aspect-square bg-white/[0.02] rounded-full blur-[100px] pointer-events-none" style="z-index: 0;"></div>
+
+<main class="relative w-full max-w-[1280px] mx-auto px-4 sm:px-8 py-20 lg:py-32 main-container" style="z-index: 10;">
+        
+        <!-- Structural Frame Lines -->
+        <div class="absolute top-0 left-4 sm:left-8 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent hidden sm:block gs-line-v" style="transform-origin: top;"></div>
+        <div class="absolute top-0 right-4 sm:right-8 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent hidden sm:block gs-line-v" style="transform-origin: top;"></div>
+        <div class="absolute top-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent gs-line-h" style="transform-origin: left;"></div>
+        <div class="absolute bottom-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent gs-line-h" style="transform-origin: right;"></div>
+        
+        <!-- Inner Column Guide Line (Desktop) -->
+        <div class="absolute top-24 left-1/2 w-px bottom-24 bg-gradient-to-b from-transparent via-white/[0.08] to-transparent hidden lg:block gs-line-v" style="transform-origin: top;"></div>
+
+        <!-- Corner Intersections (Mini Squares) -->
+        <div class="absolute top-12 left-4 sm:left-8 w-1.5 h-1.5 border border-white/30 bg-[#050505] -translate-x-1/2 -translate-y-1/2 hidden sm:block gs-dot"></div>
+        <div class="absolute top-12 right-4 sm:right-8 w-1.5 h-1.5 border border-white/30 bg-[#050505] translate-x-1/2 -translate-y-1/2 hidden sm:block gs-dot"></div>
+        <div class="absolute bottom-12 left-4 sm:left-8 w-1.5 h-1.5 border border-white/30 bg-[#050505] -translate-x-1/2 translate-y-1/2 hidden sm:block gs-dot"></div>
+        <div class="absolute bottom-12 right-4 sm:right-8 w-1.5 h-1.5 border border-white/30 bg-[#050505] translate-x-1/2 translate-y-1/2 hidden sm:block gs-dot"></div>
+
+        <!-- Perimeter L-Brackets -->
+        <div class="absolute top-8 left-4 sm:left-8 w-4 h-4 border-t border-l border-white/40 hidden sm:block gs-fade"></div>
+        <div class="absolute top-8 right-4 sm:right-8 w-4 h-4 border-t border-r border-white/40 hidden sm:block gs-fade"></div>
+        <div class="absolute bottom-8 left-4 sm:left-8 w-4 h-4 border-b border-l border-white/40 hidden sm:block gs-fade"></div>
+        <div class="absolute bottom-8 right-4 sm:right-8 w-4 h-4 border-b border-r border-white/40 hidden sm:block gs-fade"></div>
+
+        <!-- Content Area -->
+        <div class="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-start pt-16">
+            
+            <!-- Context Header -->
+            <div class="w-full border-b border-white/[0.08] pb-10 mb-10 gs-reveal relative">
+                <h1 class="text-3xl md:text-5xl lg:text-5xl font-medium tracking-tight text-white mb-2">
+                    Environments
+                </h1>
+                <p class="text-white/40 text-sm font-normal tracking-wide uppercase" style="font-family: 'JetBrains Mono', monospace;">
+                    v2.4.0 // Scene Graph Architecture
+                </p>
+                <!-- Mini decorative bracket -->
+                <div class="absolute bottom-0 left-0 w-px h-2 bg-white/40"></div>
+                <div class="absolute bottom-0 right-0 w-px h-2 bg-white/40"></div>
+            </div>
+
+            <!-- Module Navigation -->
+            <div class="w-full mb-16 gs-reveal">
+                <div class="flex flex-row items-center justify-start overflow-x-auto no-scrollbar gap-2 sm:gap-6 pb-2">
+                    
+                    <button class="relative flex items-center gap-2 py-3 px-4 text-xs sm:text-sm text-white/50 hover:text-white transition-colors group shrink-0 font-normal">
+                        <iconify-icon icon="solar:box-linear" class="text-white/40 group-hover:text-white transition-colors"></iconify-icon>
+                        WebGL Render
+                    </button>
+
+                    <!-- Active Module -->
+                    <div class="relative shrink-0 z-10 p-[1px] bg-gradient-to-b from-white/20 to-transparent">
+                        <button class="relative flex items-center gap-2 px-6 py-3 text-xs sm:text-sm text-white font-medium bg-[#0a0a0a] shadow-[inset_0_1px_4px_rgba(255,255,255,0.05)]">
+                            <iconify-icon icon="solar:layers-linear" class="text-white"></iconify-icon>
+                            Canvas 2D
+                        </button>
+                        <!-- Top corner accents for active tab -->
+                        <div class="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-white"></div>
+                        <div class="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-white"></div>
+                    </div>
+
+                    <button class="relative flex items-center gap-2 py-3 px-4 text-xs sm:text-sm text-white/50 hover:text-white transition-colors group shrink-0 font-normal">
+                        <iconify-icon icon="solar:cpu-linear" class="text-white/40 group-hover:text-white transition-colors"></iconify-icon>
+                        WebGPU Pipeline
+                    </button>
+
+                    <button class="relative flex items-center gap-2 py-3 px-4 text-xs sm:text-sm text-white/50 hover:text-white transition-colors group shrink-0 font-normal">
+                        <iconify-icon icon="solar:vector-square-linear" class="text-white/40 group-hover:text-white transition-colors"></iconify-icon>
+                        SVG DOM Node
+                    </button>
+                </div>
+            </div>
+
+            <!-- Two-Column Grid Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 w-full max-w-6xl mx-auto min-h-[420px] relative">
+                
+                <!-- Left: Specification Copy -->
+                <div class="flex flex-col justify-center items-start lg:pr-12 relative z-10">
+                    <div class="gs-stagger w-full">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-2 h-2 bg-white/20"></div>
+                            <h3 class="text-xs font-normal tracking-[0.15em] text-white/60 uppercase">
+                                Rendering Context:
+                            </h3>
+                            <div class="flex-1 h-px bg-white/[0.05]"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="gs-stagger">
+                        <h2 class="text-3xl lg:text-4xl font-medium tracking-tight text-white mb-6 leading-tight">
+                            Hardware-Accelerated<br>Graphics &amp; Projections
+                        </h2>
+                    </div>
+                    
+                    <div class="gs-stagger">
+                        <p class="text-sm text-white/50 leading-relaxed mb-10 max-w-md font-normal">
+                            Construct highly performant, lightweight two-dimensional representations of complex spatial data. Our foundational render engine bypasses heavy overhead by compiling geometry directly to primitive draw calls within a strictly 2D flat context.
+                        </p>
+                    </div>
+                    
+                    <div class="gs-stagger">
+                        <!-- Technical CTA Button -->
+                        <div class="group relative inline-flex p-[1px] bg-gradient-to-b from-white/30 via-white/5 to-transparent shadow-[0_4px_24px_rgba(255,255,255,0.03)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.08)] transition-all duration-300 cursor-pointer">
+                            <button class="flex items-center gap-3 px-8 py-3 bg-[#080808] text-white text-sm font-normal transition-transform group-hover:bg-[#0c0c0c]">
+                                <iconify-icon icon="solar:play-circle-linear" class="text-lg opacity-70 group-hover:opacity-100"></iconify-icon>
+                                Initialize Context
+                            </button>
+                            <!-- Technical framing on button -->
+                            <div class="absolute bottom-1 right-1 w-1 h-1 border-b border-r border-white/40"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: 2D ThreeJS Style Simulation -->
+                <div class="relative flex items-center justify-center w-full h-[400px] lg:h-full gs-reveal">
+                    
+                    <!-- Framed Canvas Area -->
+                    <div class="absolute inset-0 border border-white/5 bg-[#030303] overflow-hidden flex items-center justify-center">
+                        
+                        <!-- Internal Canvas Grid -->
+                        <div class="absolute inset-0 pointer-events-none" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; background-position: center center;"></div>
+                        
+                        <!-- Crosshairs -->
+                        <div class="absolute top-1/2 left-0 w-full h-px bg-white/[0.05]"></div>
+                        <div class="absolute left-1/2 top-0 h-full w-px bg-white/[0.05]"></div>
+                        
+                        <!-- 2D Projection SVG Scene -->
+                        <svg width="100%" height="100%" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" class="relative z-10">
+                            
+                            <!-- Isometric Origin / Axes -->
+                            <g class="axes" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Z-Axis (Blue-ish) -->
+                                <line x1="200" y1="200" x2="80" y2="270" stroke="rgba(100, 150, 255, 0.4)" class="svg-line"></line>
+                                <!-- X-Axis (Red-ish) -->
+                                <line x1="200" y1="200" x2="320" y2="270" stroke="rgba(255, 100, 100, 0.4)" class="svg-line"></line>
+                                <!-- Y-Axis (Green-ish) -->
+                                <line x1="200" y1="200" x2="200" y2="50" stroke="rgba(100, 255, 100, 0.4)" class="svg-line"></line>
+                                
+                                <!-- Axis Labels -->
+                                <text x="70" y="285" fill="rgba(255,255,255,0.4)" class="text-xs" style="font-family: 'JetBrains Mono', monospace;">-z</text>
+                                <text x="325" y="285" fill="rgba(255,255,255,0.4)" class="text-xs" style="font-family: 'JetBrains Mono', monospace;">+x</text>
+                                <text x="200" y="40" fill="rgba(255,255,255,0.4)" class="text-xs text-center" style="font-family: 'JetBrains Mono', monospace;" text-anchor="middle">+y</text>
+                            </g>
+
+                            <!-- Isometric Geometric Object (Cube) -->
+                            <g class="isometric-geometry" transform="translate(0, 20)">
+                                <!-- Shadow -->
+                                <polygon points="200,320 114,270 200,220 286,270" fill="rgba(255,255,255,0.02)"></polygon>
+                                
+                                <!-- Left Face -->
+                                <polygon points="114,150 200,200 200,300 114,250" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.2)" stroke-width="1" class="svg-poly"></polygon>
+                                <!-- Right Face -->
+                                <polygon points="200,200 286,150 286,250 200,300" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1" class="svg-poly"></polygon>
+                                <!-- Top Face -->
+                                <polygon points="200,100 286,150 200,200 114,150" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1" class="svg-poly"></polygon>
+                                
+                                <!-- Wireframe Subdivisions -->
+                                <g stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="2 4" class="svg-line">
+                                    <line x1="157" y1="125" x2="243" y2="175"></line>
+                                    <line x1="243" y1="125" x2="157" y2="175"></line>
+                                    <line x1="157" y1="175" x2="157" y2="275"></line>
+                                    <line x1="243" y1="175" x2="243" y2="275"></line>
+                                </g>
+
+                                <!-- Vertices Points -->
+                                <circle cx="200" cy="100" r="2.5" fill="#fff" class="svg-dot"></circle>
+                                <circle cx="114" cy="150" r="2.5" fill="#fff" class="svg-dot"></circle>
+                                <circle cx="286" cy="150" r="2.5" fill="#fff" class="svg-dot"></circle>
+                                <circle cx="200" cy="200" r="3" fill="#fff" class="svg-dot"></circle>
+                                <circle cx="114" cy="250" r="2.5" fill="rgba(255,255,255,0.5)" class="svg-dot"></circle>
+                                <circle cx="286" cy="250" r="2.5" fill="rgba(255,255,255,0.5)" class="svg-dot"></circle>
+                                <circle cx="200" cy="300" r="2.5" fill="rgba(255,255,255,0.5)" class="svg-dot"></circle>
+                            </g>
+
+                            <!-- Data Overlay / Camera Target -->
+                            <g transform="translate(260, 80)" class="gs-fade">
+                                <rect x="0" y="0" width="80" height="40" fill="rgba(0,0,0,0.8)" border="1" stroke="rgba(255,255,255,0.1)"></rect>
+                                <text x="10" y="16" fill="rgba(255,255,255,0.6)" class="text-xs" style="font-family: 'JetBrains Mono', monospace;">POS: [x,y]</text>
+                                <text x="10" y="30" fill="rgba(255,255,255,0.9)" class="text-xs" style="font-family: 'JetBrains Mono', monospace;">RND: PASS</text>
+                                <line x1="0" y1="20" x2="-20" y2="30" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"></line>
+                            </g>
+                        </svg>
+
+                        <!-- Canvas Frame Corners -->
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/40"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/40"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/40"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/40"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener("load", () => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".main-container",
+                    start: "top 75%",
+                    once: true
+                }
+            });
+
+            // Frame lines build up
+            tl.fromTo(".gs-line-v", 
+                { scaleY: 0 },
+                { scaleY: 1, duration: 1.5, ease: "expo.inOut", stagger: 0.2 }
+            )
+            .fromTo(".gs-line-h", 
+                { scaleX: 0 },
+                { scaleX: 1, duration: 1.5, ease: "expo.inOut", stagger: 0.2 },
+                "-=1.2"
+            )
+            .fromTo(".gs-dot",
+                { opacity: 0, scale: 0 },
+                { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1 },
+                "-=0.8"
+            )
+            .fromTo(".gs-fade",
+                { opacity: 0 },
+                { opacity: 1, duration: 1, stagger: 0.1 },
+                "-=0.6"
+            );
+
+            // Interface Content Reveal
+            tl.fromTo(".gs-reveal",
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: "power2.out", stagger: 0.2 },
+                "-=1.0"
+            );
+
+            // Typography Stagger Left
+            tl.fromTo(".gs-stagger",
+                { x: -15, opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.8, ease: "power2.out", stagger: 0.15 },
+                "-=0.8"
+            );
+
+            // SVG 2D "Three.js" Graphic Build Animation
+            // Animate lines drawing
+            tl.fromTo(".svg-line",
+                { strokeDasharray: 400, strokeDashoffset: 400 },
+                { strokeDashoffset: 0, duration: 2, ease: "power3.inOut", stagger: 0.1 },
+                "-=1.0"
+            )
+            // Fade in polygons
+            .fromTo(".svg-poly",
+                { opacity: 0 },
+                { opacity: 1, duration: 1, ease: "none", stagger: 0.15 },
+                "-=1.5"
+            )
+            // Pop in vertices
+            .fromTo(".svg-dot",
+                { scale: 0, transformOrigin: "center" },
+                { scale: 1, duration: 0.4, ease: "back.out(2)", stagger: 0.05 },
+                "-=1.2"
+            );
+
+            // Subtle continuous floating for the 2D geometric shape
+            gsap.to(".isometric-geometry", {
+                y: -10,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        });
+    </script>
+</section>

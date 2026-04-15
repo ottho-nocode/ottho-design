@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edge Architecture - Structural Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Space+Grotesk:wght@400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</head>
+
+<body
+  class="bg-[#050505] text-[#A1A1AA] antialiased min-h-screen flex flex-col font-sans selection:bg-[#D4FF00] selection:text-[#050505] p-4 sm:p-6 md:p-8"
+  style="font-family: 'Inter', sans-serif;">
+
+  <!-- Outer Framing Shell -->
+  <div
+    class="flex-grow w-full max-w-[1320px] mx-auto bg-[#0E0E10] rounded-[2rem] relative overflow-hidden shadow-2xl border border-[#27272A] flex flex-col">
+
+    <!-- Technical Texture Overlay -->
+    <div class="absolute inset-0 pointer-events-none opacity-40 z-0"
+      style="background-image: radial-gradient(circle, #3F3F46 1px, transparent 1px); background-size: 24px 24px;">
+    </div>
+
+    <main class="flex-grow w-full px-6 sm:px-12 py-20 md:py-28 flex flex-col items-center justify-start relative z-10">
+
+      <!-- Header Section -->
+      <header class="text-center mb-16 md:mb-20 flex flex-col items-center w-full relative">
+        <div
+          class="inline-flex items-center justify-center border border-[#D4FF00]/30 bg-[#D4FF00]/10 text-[#D4FF00] text-xs font-mono tracking-widest uppercase px-4 py-1.5 rounded-sm mb-8 gap-2">
+          <iconify-icon icon="solar:server-square-linear" class="text-sm" stroke-width="1.5"></iconify-icon>
+          Core Telemetry
+        </div>
+
+        <!-- Masked Reveal Headline Container -->
+        <h1
+          class="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-[#F4F4F5] max-w-[980px] mx-auto leading-[1.05] overflow-hidden pb-2 -mb-2"
+          style="font-family: 'Space Grotesk', sans-serif;">
+          <span id="headline-reveal" class="block" style="transform: translateY(110%); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);">
+                        Edge systems are becoming the new operational core.
+                    </span>
+        </h1>
+      </header>
+
+      <!-- Grid Section -->
+      <div class="w-full flex flex-col lg:flex-row gap-6 lg:gap-8 relative">
+
+        <!-- Column 1 (Left) -->
+        <div class="flex flex-col gap-6 lg:gap-8 w-full lg:w-[28%]">
+
+          <!-- Dark Technical Inset Panel -->
+          <div
+            class="bg-[#09090B] rounded-xl p-8 md:p-10 flex flex-col shadow-inner border border-[#1F1F22] min-h-[240px] relative">
+            <div
+              class="absolute top-3 left-3 w-1.5 h-1.5 bg-[#D4FF00] rounded-full shadow-[0_0_8px_rgba(212,255,0,0.6)]">
+            </div>
+
+            <div class="flex-grow mt-2">
+              <div class="text-6xl md:text-7xl font-medium tracking-tight text-[#F4F4F5] mb-4 leading-none"
+                style="font-family: 'Space Grotesk', sans-serif;"><span class="stat-number" data-target="48">0</span>%
+              </div>
+              <p class="text-base text-[#A1A1AA] leading-relaxed font-light">
+                of edge-native clusters operate fully autonomously.
+              </p>
+            </div>
+            <div class="mt-8 text-xs font-mono text-[#71717A] uppercase tracking-wider">Ref: Network Index 24</div>
+          </div>
+
+          <!-- Dark Slate Panel (Quote 1) -->
+          <div class="bg-[#141416] rounded-xl p-8 md:p-10 flex flex-col border border-[#27272A] flex-grow relative">
+            <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#52525B]"></div>
+            <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#52525B]"></div>
+            <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#52525B]"></div>
+            <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#52525B]"></div>
+
+            <div class="mb-8 aspect-square rounded-lg overflow-hidden bg-[#27272A] border border-[#3F3F46]">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Elias Thorne" class="w-full h-full object-cover grayscale opacity-50">
+            </div>
+            <p class="text-lg text-[#D4D4D8] leading-relaxed mb-10 flex-grow font-light">
+              "Distributed consensus frameworks dissolve latency, turning edge nodes into immediate decision centers."
+            </p>
+            <div class="mt-auto border-t border-[#27272A] pt-4">
+              <div class="font-normal text-[#F4F4F5] text-base">Elias Thorne</div>
+              <div class="text-sm text-[#71717A] mb-3 font-light">Head of Edge Operations</div>
+              <div class="text-xs font-mono text-[#52525B] uppercase tracking-widest">Src: Q2 Briefing</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column 2 (Middle) -->
+        <div class="flex flex-col gap-6 lg:gap-8 w-full lg:w-[28%]">
+
+          <!-- Dark Slate Panel (Quote 2) -->
+          <div class="bg-[#141416] rounded-xl p-8 md:p-10 flex flex-col border border-[#27272A] relative">
+            <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#52525B]"></div>
+            <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#52525B]"></div>
+            <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#52525B]"></div>
+            <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#52525B]"></div>
+
+            <div
+              class="mb-8 aspect-[4/3] sm:aspect-square rounded-lg overflow-hidden bg-[#27272A] border border-[#3F3F46]">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80" alt="Sarah Chen" class="w-full h-full object-cover grayscale opacity-50" style="object-position: top;">
+            </div>
+            <p class="text-lg text-[#D4D4D8] leading-relaxed mb-10 font-light">
+              "Bridging fragmented dark-fiber networks into a unified protocol is our primary operational directive."
+            </p>
+            <div class="mt-auto border-t border-[#27272A] pt-4">
+              <div class="font-normal text-[#F4F4F5] text-base">Sarah Chen</div>
+              <div class="text-sm text-[#71717A] mb-3 font-light">Lead Network Engineer</div>
+              <div class="text-xs font-mono text-[#52525B] uppercase tracking-widest">Src: Architecture Log</div>
+            </div>
+          </div>
+
+          <!-- Accent Technical Panel -->
+          <div
+            class="bg-[#141416] rounded-xl p-8 md:p-10 flex flex-col border border-[#D4FF00]/20 flex-grow min-h-[240px] relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-[3px] bg-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.4)]"></div>
+
+            <div class="flex-grow mt-2">
+              <div class="text-6xl md:text-7xl font-medium tracking-tight text-[#D4FF00] mb-4 leading-none"
+                style="font-family: 'Space Grotesk', sans-serif;"><span class="stat-number" data-target="93">0</span>%
+              </div>
+              <p class="text-base text-[#A1A1AA] leading-relaxed font-light">
+                of deployed micro-nodes establish stable routing within milliseconds.
+              </p>
+            </div>
+            <div class="mt-8 text-xs font-mono text-[#D4FF00]/80 uppercase tracking-wider">Ref: Topology Report</div>
+          </div>
+
+        </div>
+
+        <!-- Column 3 & 4 Combined (Right) -->
+        <div class="flex flex-col gap-6 lg:gap-8 w-full lg:w-[44%]">
+
+          <!-- Top Row: Split Stats -->
+          <div class="flex flex-col sm:flex-row gap-6 lg:gap-8">
+
+            <!-- Accent Technical Panel (Small) -->
+            <div
+              class="bg-[#141416] rounded-xl p-8 flex flex-col border border-[#D4FF00]/20 w-full sm:w-1/2 min-h-[240px] relative overflow-hidden group">
+              <div class="absolute top-0 left-0 right-0 h-[3px] bg-[#D4FF00] shadow-[0_0_12px_rgba(212,255,0,0.4)]">
+              </div>
+
+              <div class="flex-grow mt-2">
+                <div class="text-5xl md:text-6xl font-medium tracking-tight text-[#D4FF00] mb-4 leading-none"
+                  style="font-family: 'Space Grotesk', sans-serif;"><span class="stat-number" data-target="72">0</span>%
+                </div>
+                <p class="text-base text-[#A1A1AA] leading-relaxed font-light">
+                  of command centers rely on automated threat mitigation.
+                </p>
+              </div>
+              <div class="mt-8 text-xs font-mono text-[#D4FF00]/80 uppercase tracking-wider">Ref: Security Index</div>
+            </div>
+
+            <!-- Dark Technical Inset Panel (Small) -->
+            <div
+              class="bg-[#09090B] rounded-xl p-8 flex flex-col shadow-inner border border-[#1F1F22] w-full sm:w-1/2 min-h-[240px] relative">
+              <div class="absolute top-3 right-3 w-1.5 h-1.5 bg-[#52525B] rounded-full"></div>
+
+              <div class="flex-grow mt-2">
+                <div class="text-5xl md:text-6xl font-medium tracking-tight text-[#F4F4F5] mb-4 leading-none"
+                  style="font-family: 'Space Grotesk', sans-serif;"><span class="stat-number" data-target="64">0</span>%
+                </div>
+                <p class="text-base text-[#A1A1AA] leading-relaxed font-light">
+                  of legacy architectures exhibit critical vulnerability to packet degradation.
+                </p>
+              </div>
+              <div class="mt-8 text-xs font-mono text-[#71717A] uppercase tracking-wider">Ref: Systems Audit</div>
+            </div>
+
+          </div>
+
+          <!-- Wide Dark Slate Panel (Quote 3) -->
+          <div
+            class="bg-[#141416] rounded-xl p-8 md:p-10 border border-[#27272A] flex-grow flex flex-col sm:flex-row gap-8 lg:gap-10 items-center sm:items-stretch relative">
+            <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#52525B]"></div>
+            <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#52525B]"></div>
+            <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#52525B]"></div>
+            <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#52525B]"></div>
+
+            <div
+              class="w-full sm:w-[45%] shrink-0 aspect-[4/5] sm:aspect-auto rounded-lg overflow-hidden bg-[#27272A] border border-[#3F3F46]">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="David Vance" class="w-full h-full object-cover grayscale opacity-50" style="object-position: center top;">
+            </div>
+
+            <div class="flex flex-col justify-center w-full sm:w-[55%] py-2">
+              <p class="text-lg md:text-xl text-[#D4D4D8] leading-relaxed mb-8 flex-grow font-light">
+                "We operate at the physical limit of the network. Architectures that natively embed at the edge will
+                control the next decade of data transit. Latency is the only enemy."
+              </p>
+              <div class="mt-auto border-t border-[#27272A] pt-4">
+                <div class="font-normal text-[#F4F4F5] text-base">David Vance</div>
+                <div class="text-sm text-[#71717A] mb-3 font-light">Chief Infrastructure Officer</div>
+                <div class="text-xs font-mono text-[#52525B] uppercase tracking-widest">Src: Annual Symposium</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Animation Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+            // Masked Reveal Headline
+            setTimeout(() => {
+                const headline = document.getElementById('headline-reveal');
+                if (headline) {
+                    headline.style.transform = 'translateY(0)';
+                }
+            }, 100);
+
+            // Number Counters Animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        if (!el.hasAttribute('data-animated')) {
+                            el.setAttribute('data-animated', 'true');
+                            const target = parseInt(el.getAttribute('data-target'), 10);
+                            const duration = 2000;
+                            let start = null;
+                            
+                            const step = (timestamp) => {
+                                if (!start) start = timestamp;
+                                const progress = Math.min((timestamp - start) / duration, 1);
+                                // easeOutExpo
+                                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                                el.innerText = Math.floor(ease * target);
+                                
+                                if (progress < 1) {
+                                    window.requestAnimationFrame(step);
+                                } else {
+                                    el.innerText = target;
+                                }
+                            };
+                            window.requestAnimationFrame(step);
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.stat-number').forEach(el => observer.observe(el));
+        });
+  </script>
+</body>
+
+</html>

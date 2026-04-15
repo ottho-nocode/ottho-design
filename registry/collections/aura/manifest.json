@@ -1,0 +1,509 @@
+{
+  "name": "aura",
+  "version": "1.0.0",
+  "source": "https://aura.build/components",
+  "components": [
+    {
+      "id": "01-animated-ai-workflow-hero",
+      "name": "Animated AI Workflow Hero",
+      "category": "hero",
+      "description": "Component Preview",
+      "tags": [
+        "gsap",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-ai-workflow-hero-with-card-stack.tsx"
+      }
+    },
+    {
+      "id": "02-animated-strategy-timeline-dashboard",
+      "name": "Animated Strategy Timeline Dashboard",
+      "category": "dashboard",
+      "description": "Master Strategy",
+      "tags": [
+        "webgl",
+        "canvas",
+        "tailwind",
+        "animated"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-strategy-timeline-dashboard.tsx"
+      }
+    },
+    {
+      "id": "03-futuristic-hero-webgl-glass",
+      "name": "Futuristic Hero WEBGL Glass",
+      "category": "hero",
+      "description": "NX9 Neural Gateway",
+      "tags": [
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/futuristic-hero-with-webgl-glass-background.tsx"
+      }
+    },
+    {
+      "id": "04-project-infrastructure-showcase",
+      "name": "Project Infrastructure Showcase",
+      "category": "section",
+      "description": "Project Fjord - Kinetic",
+      "tags": [
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/project-infrastructure-showcase-section.tsx"
+      }
+    },
+    {
+      "id": "05-animated-glassmorphism-hero",
+      "name": "Animated Glassmorphism Hero",
+      "category": "hero",
+      "description": "Quantum Environment Surface",
+      "tags": [
+        "webgl",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-glassmorphism-hero-surface.tsx"
+      }
+    },
+    {
+      "id": "06-animated-task-management-hero",
+      "name": "Animated Task Management Hero",
+      "category": "hero",
+      "description": "Task Management",
+      "tags": [
+        "webgl",
+        "canvas",
+        "tailwind",
+        "interactive"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-task-management-hero-ui.tsx"
+      }
+    },
+    {
+      "id": "07-animated-performance-metrics",
+      "name": "Animated Performance Metrics",
+      "category": "features",
+      "description": "Animated Performance Metrics component",
+      "tags": [
+        "gsap",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-performance-metrics-feature-section.tsx"
+      }
+    },
+    {
+      "id": "08-animated-telemetry-hero",
+      "name": "Animated Telemetry Hero",
+      "category": "hero",
+      "description": "Precision in\n          Motion",
+      "tags": [
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-telemetry-hero-section.tsx"
+      }
+    },
+    {
+      "id": "09-futuristic-infrastructure-hero",
+      "name": "Futuristic Infrastructure Hero",
+      "category": "hero",
+      "description": "Distributed Edge \n                            Infrastructure",
+      "tags": [
+        "gsap",
+        "webgl",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/futuristic-infrastructure-hero-section.tsx"
+      }
+    },
+    {
+      "id": "10-deployment-tiers-pricing",
+      "name": "Deployment Tiers Pricing",
+      "category": "pricing",
+      "description": "Deployment Tiers Pricing component",
+      "tags": [],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/deployment-tiers-pricing-section.tsx"
+      }
+    },
+    {
+      "id": "11-futuristic-3d-data-visualization",
+      "name": "Futuristic 3D Data Visualization",
+      "category": "dashboard",
+      "description": "Futuristic 3D Data Visualization component",
+      "tags": [],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/futuristic-3d-data-visualization-ui-scene.tsx"
+      }
+    },
+    {
+      "id": "12-legal-ai-use-cases",
+      "name": "Legal AI Use Cases",
+      "category": "section",
+      "description": "Legal AI Use Cases",
+      "tags": [
+        "tailwind",
+        "animated"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/legal-ai-use-cases-feature-section.tsx"
+      }
+    },
+    {
+      "id": "13-edge-architecture-stats",
+      "name": "Edge Architecture Stats",
+      "category": "section",
+      "description": "Edge Architecture - Structural Analysis",
+      "tags": [
+        "tailwind",
+        "animated"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/edge-architecture-stats-and-testimonial-section.tsx"
+      }
+    },
+    {
+      "id": "14-ai-saas-hero-webgl",
+      "name": "AI SAAS Hero WEBGL",
+      "category": "hero",
+      "description": "Nexus - AI Intelligence",
+      "tags": [
+        "webgl",
+        "canvas",
+        "tailwind",
+        "animated"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/ai-saas-hero-with-animated-webgl-background.tsx"
+      }
+    },
+    {
+      "id": "15-animated-ai-platform-hero",
+      "name": "Animated AI Platform Hero",
+      "category": "hero",
+      "description": "Synthex - Cognitive Platform",
+      "tags": [
+        "tailwind",
+        "animated"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-ai-platform-hero-section.tsx"
+      }
+    },
+    {
+      "id": "16-futuristic-bento-hero",
+      "name": "Futuristic Bento Hero",
+      "category": "hero",
+      "description": "Spatial Aesthetics - Digital Horizons",
+      "tags": [
+        "gsap",
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/futuristic-bento-hero-section.tsx"
+      }
+    },
+    {
+      "id": "17-animated-aurora-hero",
+      "name": "Animated Aurora Hero",
+      "category": "hero",
+      "description": "DISCOVER\n                THE\n                ASHEN\n                AURORA",
+      "tags": [
+        "gsap",
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-aurora-hero-section.tsx"
+      }
+    },
+    {
+      "id": "18-animated-light-sculpture-hero",
+      "name": "Animated Light Sculpture Hero",
+      "category": "hero",
+      "description": "RAY\n                \n                \n                    OF\n                \n                \n                    LIGHT",
+      "tags": [
+        "gsap",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-light-sculpture-hero-section.tsx"
+      }
+    },
+    {
+      "id": "19-webgl-geometry-hero",
+      "name": "WEBGL Geometry Hero",
+      "category": "hero",
+      "description": "Synthesize\n                    \n                    \n                    \n                        \n                     ",
+      "tags": [
+        "gsap",
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/webgl-geometry-hero-section.tsx"
+      }
+    },
+    {
+      "id": "20-animated-webgl-hero",
+      "name": "Animated WEBGL Hero",
+      "category": "hero",
+      "description": "The\n            Design\n            Tool\n            \n            for\n            Shader\n            Magic",
+      "tags": [
+        "gsap",
+        "webgl",
+        "three.js",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-webgl-hero-section.tsx"
+      }
+    },
+    {
+      "id": "21-animated-fintech-dashboard-hero",
+      "name": "Animated Fintech Dashboard Hero",
+      "category": "hero",
+      "description": "Financial infrastructure for the internet.",
+      "tags": [
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind",
+        "animated",
+        "interactive"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-fintech-dashboard-hero-section.tsx"
+      }
+    },
+    {
+      "id": "22-animated-three-tier-pricing",
+      "name": "Animated Three Tier Pricing",
+      "category": "pricing",
+      "description": "Pricing Cards Component — Nova",
+      "tags": [],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-three-tier-pricing-section.tsx"
+      }
+    },
+    {
+      "id": "23-ai-platform-dashboard-showcase",
+      "name": "AI Platform Dashboard Showcase",
+      "category": "dashboard",
+      "description": "Showcase Dashboard Component — Nova",
+      "tags": [],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/ai-platform-dashboard-showcase-section.tsx"
+      }
+    },
+    {
+      "id": "24-animated-cta-terminal-command",
+      "name": "Animated CTA Terminal Command",
+      "category": "cta",
+      "description": "CTA Section Component — Nova",
+      "tags": [],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-cta-section-with-terminal-command.tsx"
+      }
+    },
+    {
+      "id": "25-pricing-comparison-table",
+      "name": "Pricing Comparison Table",
+      "category": "pricing",
+      "description": "Component: Comparison Table — Nova",
+      "tags": [],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/pricing-comparison-table-section.tsx"
+      }
+    },
+    {
+      "id": "26-animated-bento-grid-features",
+      "name": "Animated Bento Grid Features",
+      "category": "features",
+      "description": "Nova — Bento Grid Component",
+      "tags": [
+        "animated"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-bento-grid-features-section.tsx"
+      }
+    },
+    {
+      "id": "27-animated-audio-plugin-dashboard",
+      "name": "Animated Audio Plugin Dashboard",
+      "category": "dashboard",
+      "description": "Aura",
+      "tags": [
+        "gsap",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-audio-plugin-interface-dashboard.tsx"
+      }
+    },
+    {
+      "id": "28-animated-technical-feature",
+      "name": "Animated Technical Feature",
+      "category": "features",
+      "description": "Environments",
+      "tags": [
+        "gsap",
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-technical-feature-section.tsx"
+      }
+    },
+    {
+      "id": "29-animated-network-topology-hero",
+      "name": "Animated Network Topology Hero",
+      "category": "hero",
+      "description": "Network Topology",
+      "tags": [
+        "gsap",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-network-topology-hero-section.tsx"
+      }
+    },
+    {
+      "id": "30-scifi-hero-particle-cta",
+      "name": "Scifi Hero Particle CTA",
+      "category": "hero",
+      "description": "NexusContainment",
+      "tags": [
+        "gsap",
+        "webgl",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/sci-fi-hero-section-with-particle-cta.tsx"
+      }
+    },
+    {
+      "id": "31-ai-asset-generator-dashboard",
+      "name": "AI Asset Generator Dashboard",
+      "category": "dashboard",
+      "description": "Render theunseen.",
+      "tags": [
+        "tailwind",
+        "interactive"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/ai-asset-generator-dashboard-ui.tsx"
+      }
+    },
+    {
+      "id": "32-animated-ai-architecture-hero",
+      "name": "Animated AI Architecture Hero",
+      "category": "hero",
+      "description": "Manifestthe void.",
+      "tags": [
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/animated-ai-architecture-hero-ui.tsx"
+      }
+    },
+    {
+      "id": "33-infrastructure-pricing-billing",
+      "name": "Infrastructure Pricing Billing",
+      "category": "pricing",
+      "description": "Infrastructure Pricing Billing component",
+      "tags": [],
+      "formats": {
+        "html": "html/index.html",
+        "react": "react/infrastructure-pricing-section-with-billing-toggle.tsx"
+      }
+    },
+    {
+      "id": "34-animated-webgl-feature-showcase",
+      "name": "Animated WEBGL Feature Showcase",
+      "category": "features",
+      "description": "Cognitive\n              Architecture\n              Topology",
+      "tags": [
+        "gsap",
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind",
+        "animated"
+      ],
+      "formats": {
+        "html": "html/index.html"
+      }
+    },
+    {
+      "id": "35-futuristic-command-center-hero",
+      "name": "Futuristic Command Center Hero",
+      "category": "hero",
+      "description": "Orbital\n              Command\n              Framework",
+      "tags": [
+        "webgl",
+        "three.js",
+        "canvas",
+        "tailwind"
+      ],
+      "formats": {
+        "html": "html/index.html"
+      }
+    }
+  ]
+}

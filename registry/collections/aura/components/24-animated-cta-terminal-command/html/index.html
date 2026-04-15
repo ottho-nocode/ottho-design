@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTA Section Component — Nova</title>
+  <meta name="color-scheme" content="dark">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" async></script>
+  <style>
+    @property --border-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @property --shimmer-pos {
+      syntax: '<percentage>';
+      initial-value: -100%;
+      inherits: false;
+    }
+
+    :root {
+      --bg: #050514;
+      --bg-alt: #0a0a1e;
+      --accent: #f59e0b;
+      --accent2: #fbbf24;
+      --accent3: #fb923c;
+      --pink: #f97316;
+      --gold: #fde68a;
+      --text: #e8edf3;
+      --text-muted: #94a3b8;
+      --text-dim: #4b5e78;
+      --border: rgba(245, 158, 11, 0.10);
+      --glow: rgba(245, 158, 11, 0.06);
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::selection {
+      background: rgba(245, 158, 11, 0.35);
+      color: #f0e6ff;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.4);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(245, 158, 11, 0.6);
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      mix-blend-mode: overlay;
+      transform: translateZ(0);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+      color: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-heading);
+      font-weight: 200;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 400;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent2);
+    }
+
+    @keyframes borderSpin {
+      to {
+        --border-angle: 360deg;
+      }
+    }
+
+    @keyframes shimmer {
+      to {
+        --shimmer-pos: 200%;
+      }
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ============================================
+   BUTTONS
+   ============================================ */
+    .btn-conic {
+      position: relative;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: white;
+      background: var(--bg);
+      z-index: 1;
+      overflow: hidden;
+      animation: borderSpin 3s linear infinite;
+    }
+
+    .btn-conic::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 14px;
+      background: conic-gradient(from var(--border-angle), var(--accent), var(--pink), var(--gold), var(--accent3), var(--accent));
+      z-index: -2;
+      animation: borderSpin 3s linear infinite;
+    }
+
+    .btn-conic::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(5, 5, 20, 0.95));
+      z-index: -1;
+    }
+
+    .btn-conic .shimmer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
+      animation: shimmer 2.5s ease-in-out infinite;
+      background-size: 200% 100%;
+      background-position: var(--shimmer-pos) center;
+    }
+
+    .btn-conic:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s;
+    }
+
+    .btn-ghost {
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      border: 1px solid rgba(245, 158, 11, 0.15);
+      background: rgba(245, 158, 11, 0.04);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: rgba(245, 158, 11, 0.3);
+      box-shadow: 0 0 24px rgba(245, 158, 11, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+   CTA SECTION
+   ============================================ */
+    .cta-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section .section-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(245, 158, 11, 0.1), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+
+    .cta-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .cta-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .cta-terminal {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 24px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .cta-terminal .prompt {
+      color: var(--accent2);
+    }
+
+    .cta-terminal .cmd {
+      color: var(--text);
+    }
+
+    .cta-terminal .copy-btn {
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--accent2);
+      font-size: 0.68rem;
+      transition: background 0.2s;
+    }
+
+    .cta-terminal .copy-btn:hover {
+      background: rgba(245, 158, 11, 0.2);
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .trust-badge iconify-icon {
+      font-size: 0.9rem;
+      color: var(--accent2);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .cta-section {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+
+      .cta-title {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-terminal {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        font-size: 0.72rem;
+      }
+
+      .cta-section {
+        min-height: auto;
+        padding: 60px 16px;
+      }
+
+      .cta-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cta-actions .btn-conic,
+      .cta-actions .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .trust-badges {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="cta-section">
+    <div class="section-glow"></div>
+    <div class="cta-content reveal">
+      <div class="eyebrow" style="justify-content:center">Get Started</div>
+      <h2 class="cta-title">Ready to deploy <span class="text-gradient">intelligence</span>?</h2>
+      <p class="cta-desc">Get from zero to production in under five minutes. One command is all it takes.</p>
+      <div class="cta-terminal">
+        <span class="prompt">$</span>
+        <span class="cmd">npx create-nova-app</span>
+        <button class="copy-btn" onclick="navigator.clipboard.writeText('npx create-nova-app')">Copy</button>
+      </div>
+      <div class="cta-actions">
+        <button class="btn-conic" onclick="window.location.hash='pricing'">
+        <span class="shimmer"></span>
+        Start Building Free
+      </button>
+        <button class="btn-ghost">
+        <iconify-icon icon="lucide:calendar" width="14"></iconify-icon>
+        Book a Demo
+      </button>
+      </div>
+      <div class="trust-badges">
+        <div class="trust-badge"><iconify-icon icon="lucide:credit-card"></iconify-icon> No credit card required</div>
+        <div class="trust-badge"><iconify-icon icon="lucide:shield-check"></iconify-icon> SOC 2 Certified</div>
+        <div class="trust-badge"><iconify-icon icon="lucide:headphones"></iconify-icon> 24/7 Support</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .stagger-up').forEach(el => {
+    revealObserver.observe(el);
+  });
+})();
+  </script>
+</body>
+
+</html>

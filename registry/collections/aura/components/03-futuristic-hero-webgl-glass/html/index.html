@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased selection:bg-[#a8d055] selection:text-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NX9 Neural Gateway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-color: #050f05;
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="relative h-screen w-screen text-white flex items-start justify-start">
+
+    <!-- WebGL Background -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- UI Overlay -->
+    <main class="relative z-10 w-full h-full p-8 md:p-16 lg:p-[72px] pointer-events-none">
+        <div class="flex items-start gap-5 md:gap-7 lg:gap-8">
+            
+            <!-- Logo Custom SVG -->
+            <svg viewBox="0 0 64 64" fill="none" class="w-14 h-14 md:w-20 md:h-20 lg:w-[84px] lg:h-[84px] shrink-0 text-white drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16 8C19.5 14.5 25.5 18 32 18C38.5 18 44.5 14.5 48 8C52.5 10.5 54.5 12.5 56 16C49.5 19.5 46 25.5 46 32C46 38.5 49.5 44.5 56 48C54.5 51.5 52.5 53.5 48 56C44.5 49.5 38.5 46 32 46C25.5 46 19.5 49.5 16 56C11.5 53.5 9.5 51.5 8 48C14.5 44.5 18 38.5 18 32C18 25.5 14.5 19.5 8 16C9.5 12.5 11.5 10.5 16 8ZM32 24L40 32L32 40L24 32L32 24Z" fill="currentColor"/>
+            </svg>
+
+            <!-- Vertical Divider -->
+            <div class="w-[3px] md:w-1 h-[76px] md:h-[104px] lg:h-[116px] bg-white mt-0.5 md:mt-1 drop-shadow-xl"></div>
+
+            <!-- Typography Cluster -->
+            <div class="flex flex-col gap-1.5 md:gap-2 mt-1 md:mt-1.5">
+                <div class="flex items-center gap-1.5 md:gap-2">
+                    <iconify-icon icon="solar:cpu-linear" stroke-width="1.5" class="text-[#a8d055] text-sm md:text-base"></iconify-icon>
+                    <span class="text-[#a8d055] text-xs md:text-sm font-medium tracking-[0.15em] md:tracking-[0.2em] uppercase drop-shadow-md">
+                        Quantum Data Mesh
+                    </span>
+                </div>
+                <h1 class="text-white text-4xl md:text-6xl lg:text-[72px] font-semibold tracking-tight leading-[1.05] drop-shadow-2xl">
+                    NX9 Neural<br/>Gateway
+                </h1>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- WebGL Shader Implementation -->
+    <script>
+        const canvas = document.getElementById('webgl-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: false });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
+        
+        const scene = new THREE.Scene();
+        
+        // Orthographic camera for full screen 2D effect
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        
+        const geometry = new THREE.PlaneGeometry(2, 2);
+        
+        const vertexShader = `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = vec4(position, 1.0);
+            }
+        `;
+
+        const fragmentShader = `
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            varying vec2 vUv;
+
+            // Simple noise function for natural movement
+            float noise(vec2 p) {
+                return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+            }
+
+            void main() {
+                vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                // Correct aspect ratio for circular blobs
+                vec2 aspectUv = uv;
+                aspectUv.x *= u_resolution.x / u_resolution.y;
+
+                // 1. Ribbed Glass Geometry
+                // Adjust number of flutes based on screen width to keep them relatively consistent
+                float flutes = u_resolution.x / 18.0; 
+                float fx = fract(uv.x * flutes);
+                
+                // Normal approximation for the rounded glass flute (cylinder slice)
+                float nx = (fx - 0.5) * 2.0; // -1 to 1 across the flute
+                float nz = sqrt(max(0.0, 1.0 - nx*nx)); // Ensure positive square root
+                
+                // Darken the seams between flutes
+                float seam = pow(abs(nx), 4.0);
+
+                // 2. Refraction
+                // Distort the UV coordinates to simulate looking through curved glass
+                float refractionStrength = 0.015;
+                vec2 refUv = aspectUv + vec2(nx * refractionStrength, 0.0);
+
+                // 3. Background Fluid Dynamics
+                float t = u_time * 0.4;
+                
+                // Create multiple undulating glowing areas
+                float blob1 = length(refUv - vec2(0.5 * (u_resolution.x/u_resolution.y) + sin(t*0.8)*0.3, 0.6 + cos(t*0.6)*0.2));
+                float blob2 = length(refUv - vec2(0.3 * (u_resolution.x/u_resolution.y) + cos(t*1.1)*0.4, 0.3 + sin(t*0.9)*0.3));
+                float blob3 = length(refUv - vec2(0.8 * (u_resolution.x/u_resolution.y) + sin(t*0.5)*0.2, 0.8 + cos(t*0.7)*0.1));
+                
+                // Deep, vibrant color palette matching the reference
+                vec3 darkBase = vec3(0.01, 0.12, 0.02);
+                vec3 midGreen = vec3(0.1, 0.4, 0.05);
+                vec3 brightGreen = vec3(0.3, 0.7, 0.1);
+                vec3 yellowHighlight = vec3(0.7, 0.9, 0.2);
+
+                // Combine blobs into background color
+                vec3 bgColor = darkBase;
+                bgColor = mix(bgColor, midGreen, smoothstep(1.0, 0.2, blob1));
+                bgColor = mix(bgColor, brightGreen, smoothstep(0.8, 0.15, blob2));
+                
+                // Add extreme highlights at core of blobs
+                float coreGlow = smoothstep(0.3, 0.0, min(blob1, blob2));
+                bgColor = mix(bgColor, yellowHighlight, coreGlow * 0.8);
+
+                // Add subtle sweeping gradient across the whole screen
+                bgColor += midGreen * sin(uv.y * 3.14 + t) * 0.1;
+
+                // 4. Lighting & Shading on Glass Flutes
+                // Specular reflection on the curved glass surface
+                vec3 lightDir = normalize(vec3(0.8, 0.5, 1.0));
+                vec3 normal = normalize(vec3(nx, 0.0, nz));
+                float specular = pow(max(dot(reflect(-lightDir, normal), vec3(0.0, 0.0, 1.0)), 0.0), 24.0);
+                
+                // Apply shadowing in the seams
+                vec3 finalColor = bgColor * (1.0 - seam * 0.7);
+                
+                // Add sharp specular highlights, boosted where the background is bright
+                finalColor += specular * 0.35 * (bgColor + vec3(0.5));
+                
+                // Subtle vignette
+                float vignette = smoothstep(1.5, 0.2, length(uv - 0.5));
+                finalColor *= vignette * 0.9 + 0.1;
+
+                gl_FragColor = vec4(finalColor, 1.0);
+            }
+        `;
+
+        const material = new THREE.ShaderMaterial({
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+                u_time: { value: 0 },
+                u_resolution: { value: new THREE.Vector2() }
+            }
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        function resize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            renderer.setSize(width, height);
+            material.uniforms.u_resolution.value.set(width, height);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        let startTime = Date.now();
+        function animate() {
+            requestAnimationFrame(animate);
+            material.uniforms.u_time.value = (Date.now() - startTime) * 0.001;
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Component Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100%;
+      overflow: auto;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #000000;
+      color: #ffffff;
+    }
+    .component-wrapper {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="component-wrapper">
+    <html><head></head><body><section class="relative min-h-screen w-full overflow-hidden bg-[#050505]" style="font-family: 'Inter', sans-serif;">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        .perspective-container {
+            perspective: 1800px;
+            transform-style: preserve-3d;
+        }
+
+        .stack-card {
+            transform-style: preserve-3d;
+            will-change: transform, opacity, filter;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .ambient-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(20, 30, 60, 0.4) 0%, rgba(5, 5, 5, 1) 70%);
+        }
+
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(200%);
+            }
+        }
+
+        .scanner-line {
+            animation: scan 2s linear infinite;
+        }
+    </style>
+
+    <div class="fixed inset-0 ambient-glow z-0"></div>
+    <div class="fixed inset-0 noise-overlay z-0"></div>
+    <div class="fixed inset-0 pointer-events-none z-10" style="box-shadow: inset 0 0 150px rgba(0,0,0,0.8);"></div>
+
+    <main class="relative h-screen w-full flex items-center justify-center z-20">
+        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-50 px-6 pt-32 sm:pt-0 pb-[30vh]">
+            <div class="flex flex-col items-center text-center max-w-3xl gap-6">
+                <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1]">
+                    From Any Website to Your Own — Instantly
+                </h1>
+                <p class="text-base md:text-lg text-neutral-400 max-w-lg font-light">Remix, convert, and build full
+                    designs with AI in seconds.</p>
+                <div class="pt-4 pointer-events-auto">
+                    <button class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-white px-8 font-medium text-neutral-950 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        <span class="mr-2 text-sm">Try the Workflow</span>
+                        <iconify-icon icon="solar:arrow-right-linear" class="text-lg transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute inset-0 perspective-container w-full h-full flex items-center justify-center z-30 pointer-events-none mt-20 sm:mt-40">
+            <div id="card-stack" class="relative w-full max-w-[1000px] h-[600px] pointer-events-auto">
+                <!-- Card 1 -->
+                <div class="stack-card absolute left-1/2 top-1/2 w-full max-w-[800px] aspect-[16/9] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden group cursor-pointer">
+                    <div class="h-10 border-b border-neutral-800 bg-black/50 flex items-center justify-between px-4 text-[10px] uppercase tracking-widest text-neutral-500 font-mono">
+                        <div class="flex items-center gap-2"><iconify-icon icon="solar:box-linear"></iconify-icon><span>Sys.Core</span></div>
+                        <div class="flex gap-4"><span>Solutions</span><span>API</span></div>
+                    </div>
+                    <div class="flex h-full w-full bg-[#E53935] text-white">
+                        <div class="w-1/2 p-10 flex flex-col justify-center border-r border-white/10 relative">
+                            <iconify-icon icon="solar:cpu-linear" class="text-6xl mb-6 opacity-80"></iconify-icon>
+                            <h2 class="text-3xl font-medium tracking-tight mb-4 uppercase">AI Plan Review</h2>
+                            <p class="text-[10px] text-white/70 font-mono">[1] Detects structural elements [2]
+                                Highlights inconsistencies</p>
+                        </div>
+                        <div class="w-1/2 flex items-center justify-center bg-black/20 backdrop-blur-sm relative">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent h-[20px] scanner-line mix-blend-overlay">
+                            </div>
+                            <div class="w-48 h-48 border border-white/20 flex items-center justify-center rounded-sm">
+                                <iconify-icon icon="solar:scanner-linear" class="text-6xl text-white/50"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flash-overlay absolute inset-0 bg-white opacity-0 mix-blend-overlay transition-opacity duration-200">
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="stack-card absolute left-1/2 top-1/2 w-full max-w-[800px] aspect-[16/9] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden group cursor-pointer">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 contrast-125">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex justify-between items-center p-6 text-xs text-white/80">
+                            <span class="font-medium tracking-tight">TerraCorp</span>
+                            <div class="flex gap-6"><span>Robotics</span><span>Investors</span></div>
+                        </div>
+                        <div class="flex-grow flex items-end p-10 pb-16">
+                            <div class="bg-[#F25C54] p-6 transform -skew-x-3">
+                                <h2 class="text-4xl font-medium text-white transform skew-x-3">Autonomous Harvesting
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flash-overlay absolute inset-0 bg-white opacity-0 mix-blend-overlay transition-opacity duration-200">
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="stack-card absolute left-1/2 top-1/2 w-full max-w-[800px] aspect-[16/9] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden group cursor-pointer">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e534354d-c5f2-4399-a1d9-2f50338e8c47_1600w.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50">
+                    <div class="relative z-10 flex flex-col h-full bg-white/5 backdrop-blur-[2px]">
+                        <div class="flex justify-between items-center p-5 text-xs text-white border-b border-white/10">
+                            <span class="font-medium tracking-wide uppercase">Proception</span><button class="border border-white/20 px-3 py-1 rounded text-[10px]">Contact</button>
+                        </div>
+                        <div class="p-10 mt-10 max-w-lg">
+                            <span class="text-[10px] uppercase tracking-widest text-[#8AB4F8] mb-4 block">/ Tech /</span>
+                            <h2 class="text-4xl font-medium text-white mb-6">AI Powered Prosthetics</h2>
+                        </div>
+                    </div>
+                    <div class="flash-overlay absolute inset-0 bg-white opacity-0 mix-blend-overlay transition-opacity duration-200">
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="stack-card absolute left-1/2 top-1/2 w-full max-w-[800px] aspect-[16/9] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white overflow-hidden group cursor-pointer">
+                    <div class="h-16 flex items-center justify-between px-8 border-b border-neutral-200">
+                        <span class="text-lg font-medium">archon</span><button class="bg-black text-white px-4 py-2 rounded-full font-medium text-xs">Book demo</button>
+                    </div>
+                    <div class="bg-[#FF5500] h-full p-10 flex flex-col justify-center">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-4 h-4 rounded-full bg-black"></div>
+                            <span class="text-black font-medium text-xl">Platform</span>
+                        </div>
+                        <h2 class="text-5xl sm:text-6xl font-medium tracking-tight text-black leading-none max-w-xl">
+                            Sell Your Software To Anyone.</h2>
+                    </div>
+                    <div class="flash-overlay absolute inset-0 bg-white opacity-0 mix-blend-overlay transition-opacity duration-200">
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="stack-card absolute left-1/2 top-1/2 w-full max-w-[800px] aspect-[16/9] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[#FAFAFA] border border-neutral-200 overflow-hidden group cursor-pointer">
+                    <div class="flex justify-between items-center p-8 text-xs text-neutral-500">
+                        <iconify-icon icon="solar:smile-circle-linear" class="text-2xl text-black"></iconify-icon>
+                        <button class="bg-[#2962FF] text-white px-5 py-2.5 rounded-md font-medium flex items-center gap-2">Appointment <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon></button>
+                    </div>
+                    <div class="flex-grow flex items-center justify-center p-10 relative">
+                        <div class="absolute right-10 top-1/2 -translate-y-1/2 w-1/3 aspect-square bg-neutral-100 rounded-full mix-blend-multiply opacity-50">
+                        </div>
+                        <h2 class="text-5xl sm:text-7xl font-medium text-black text-center z-10 leading-[1.1]">Modern
+                            Healthcare.</h2>
+                    </div>
+                    <div class="flash-overlay absolute inset-0 bg-black opacity-0 mix-blend-overlay transition-opacity duration-200">
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="stack-card absolute left-1/2 top-1/2 w-full max-w-[800px] aspect-[16/9] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[#0A0D14] border border-neutral-800 overflow-hidden group cursor-pointer">
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa51902b-c2a4-4c33-a96e-a8f1ef67edc6_1600w.jpg" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-lighten">
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="flex justify-between items-center p-6 text-xs text-neutral-400 border-b border-white/5 bg-black/40 backdrop-blur-md">
+                            <span class="text-white font-medium tracking-widest">HYVE.SYSTEMS</span>
+                            <span class="text-[#00FF9D] flex items-center gap-1">Consultation <iconify-icon icon="solar:arrow-down-linear"></iconify-icon></span>
+                        </div>
+                        <div class="flex-grow flex items-center p-10">
+                            <h2 class="text-4xl font-medium text-white max-w-md">Scaling compute to the physical limit.
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="flash-overlay absolute inset-0 bg-white opacity-0 mix-blend-overlay transition-opacity duration-200">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+            const title = document.getElementById('hero-title');
+            if (title) {
+                const words = title.innerText.split(' ');
+                title.innerHTML = words.map(w => `<span class="inline-flex overflow-hidden pb-2 mr-[0.2em] -mb-2 align-bottom"><span class="word-inner inline-block will-change-transform">${w}</span></span>`).join('');
+                gsap.fromTo(title.querySelectorAll('.word-inner'), { y: '120%', rotationZ: 2 }, { y: '0%', rotationZ: 0, duration: 1, stagger: 0.04, ease: "power4.out", delay: 0.2 });
+                gsap.fromTo(title.nextElementSibling, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, delay: 0.8, ease: "power3.out" });
+            }
+
+            const cards = Array.from(document.querySelectorAll('.stack-card'));
+            let globalProgress = 0, isHovered = false;
+            const SPEED = 0.0006;
+
+            function renderStack() {
+                if (!isHovered) globalProgress += SPEED;
+                cards.forEach((card, i) => {
+                    let p = (globalProgress + (i / cards.length)) % 1;
+                    let y = 500 - (p * 1100), scale = 1 - (p * 0.4), zIndex = Math.round((1 - p) * 100);
+                    let opacity = p < 0.1 ? p / 0.1 : (p > 0.85 ? (1 - p) / 0.15 : 1);
+                    let blurAmt = p > 0.6 ? (p - 0.6) * 15 : 0;
+                    
+                    card.style.transform = `translate(-50%, -50%) translateY(${y}px) scale(${scale}) rotateX(${p * 15}deg)`;
+                    card.style.zIndex = zIndex;
+                    card.style.opacity = opacity;
+                    card.style.filter = `blur(${blurAmt}px) brightness(${isHovered ? (card.dataset.hovered === "true" ? 1.1 : 0.6) : 1})`;
+
+                    const flash = card.querySelector('.flash-overlay');
+                    if (flash) {
+                        if (p > 0.38 && p < 0.42 && !card.dataset.flashed) {
+                            flash.style.opacity = '1'; setTimeout(() => flash.style.opacity = '0', 150);
+                            card.dataset.flashed = "true";
+                        } else if (p > 0.6 || p < 0.2) card.dataset.flashed = "";
+                    }
+                });
+                requestAnimationFrame(renderStack);
+            }
+
+            cards.forEach(card => {
+                card.onmouseenter = () => { isHovered = true; card.dataset.hovered = "true"; card.style.transition = "transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)"; };
+                card.onmouseleave = () => { isHovered = false; card.dataset.hovered = "false"; card.style.transition = "none"; };
+            });
+            renderStack();
+        });
+    </script>
+</section></body></html>
+  </div>
+  
+    <script>
+      (function() {
+        function checkAndCenter() {
+          // Use double requestAnimationFrame to ensure DOM is fully painted and layout is stable
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              const wrapper = document.querySelector('.component-wrapper');
+              if (!wrapper) return;
+              
+              // Get all child elements
+              const children = Array.from(wrapper.children);
+              if (children.length === 0) return;
+              
+              // Temporarily override wrapper styles to shrink-wrap for measurement
+              // Set inline styles to shrink-wrap (inline styles override CSS)
+              wrapper.style.display = 'inline-block';
+              wrapper.style.width = 'auto';
+              wrapper.style.height = 'auto';
+              wrapper.style.overflow = 'visible';
+              wrapper.style.boxSizing = 'content-box';
+              
+              // Force multiple reflows to ensure styles are fully applied
+              void wrapper.offsetHeight;
+              void wrapper.offsetWidth;
+              void wrapper.offsetHeight;
+              
+              // Measure the wrapper's content size
+              const contentWidth = wrapper.offsetWidth;
+              const contentHeight = wrapper.offsetHeight;
+              
+              // Restore original styles by removing inline styles we added
+              wrapper.style.removeProperty('display');
+              wrapper.style.removeProperty('width');
+              wrapper.style.removeProperty('height');
+              wrapper.style.removeProperty('overflow');
+              wrapper.style.removeProperty('box-sizing');
+              
+              // If content is less than 500x500, center it
+              if (contentWidth > 0 && contentHeight > 0 && contentWidth < 500 && contentHeight < 500) {
+                wrapper.style.display = 'flex';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.justifyContent = 'center';
+              }
+            });
+          });
+        }
+        
+        // Check immediately and after delays to ensure content is rendered and styled
+        function runChecks() {
+          checkAndCenter();
+          setTimeout(checkAndCenter, 50);
+          setTimeout(checkAndCenter, 150);
+          setTimeout(checkAndCenter, 300);
+          setTimeout(checkAndCenter, 500);
+          setTimeout(checkAndCenter, 1000);
+        }
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', runChecks);
+        } else {
+          runChecks();
+        }
+        
+        // Also check when images or other resources load
+        window.addEventListener('load', () => {
+          setTimeout(checkAndCenter, 100);
+          setTimeout(checkAndCenter, 300);
+        });
+        
+        // Use ResizeObserver to detect size changes
+        if (window.ResizeObserver) {
+          setTimeout(() => {
+            const wrapper = document.querySelector('.component-wrapper');
+            if (wrapper) {
+              const observer = new ResizeObserver(() => {
+                setTimeout(checkAndCenter, 50);
+              });
+              observer.observe(wrapper);
+            }
+          }, 500);
+        }
+      })();
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,156 @@
+<section
+    class="antialiased bg-[#050505] text-white min-h-screen overflow-hidden selection:bg-white/20 selection:text-white relative flex flex-col font-sans"
+    style="font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <canvas id="hero-canvas" class="fixed inset-0 pointer-events-none z-0 mix-blend-screen" aria-hidden="true"></canvas>
+
+    <header
+        class="relative z-50 flex justify-between items-center w-full px-6 md:px-12 py-8 mix-blend-difference text-white">
+        <button class="flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300" aria-label="Search">
+            <iconify-icon icon="solar:magnifer-linear" width="20" height="20"></iconify-icon>
+        </button>
+        <div class="flex items-center justify-center opacity-90" aria-hidden="true">
+            <iconify-icon icon="solar:layers-linear" width="24" height="24"
+                style="transform: rotate(45deg);"></iconify-icon>
+        </div>
+        <button class="flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300" aria-label="Menu">
+            <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+        </button>
+    </header>
+
+    <main
+        class="relative z-40 flex-1 flex flex-col justify-center px-6 md:px-12 w-full max-w-7xl mx-auto pt-10 md:pt-0">
+        <div class="max-w-3xl">
+            <h1
+                class="text-5xl md:text-8xl leading-none tracking-tight uppercase font-light text-white mix-blend-difference flex flex-wrap gap-x-3 md:gap-x-4">
+                <span class="overflow-hidden inline-block align-bottom pb-1"><span class="reveal-word inline-block" style="transform: translateY(110%);">DISCOVER</span></span>
+                <span class="overflow-hidden inline-block align-bottom pb-1"><span class="reveal-word inline-block" style="transform: translateY(110%);">THE</span></span>
+                <span class="overflow-hidden inline-block align-bottom pb-1"><span class="reveal-word inline-block" style="transform: translateY(110%);">ASHEN</span></span>
+                <span class="overflow-hidden inline-block align-bottom pb-1"><span class="reveal-word inline-block" style="transform: translateY(110%);">AURORA</span></span>
+            </h1>
+
+            <p class="mt-6 md:mt-8 text-base md:text-xl text-white/60 font-extralight max-w-sm md:max-w-md leading-relaxed tracking-wide opacity-0"
+                id="hero-subtext">
+                A boundless threshold fusing volumetric light, quiet motion, and architectural elegance.
+            </p>
+
+            <div class="mt-16 md:mt-24 relative inline-flex items-center opacity-0" id="hero-cta">
+                <div class="w-12 md:w-20 h-[1px] bg-white/20 relative top-3">
+                    <div class="absolute right-0 top-0 w-[1px] h-3 bg-white/20"></div>
+                </div>
+                <a href="#" class="relative group block px-8 py-5 cursor-pointer ml-[-1px]">
+                    <div
+                        class="absolute top-0 right-0 w-[1px] h-4 bg-white/20 transition-all duration-500 group-hover:h-full group-hover:bg-white/40">
+                    </div>
+                    <div
+                        class="absolute top-0 right-0 w-8 h-[1px] bg-white/20 transition-all duration-500 group-hover:w-full group-hover:bg-white/40">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-[1px] h-4 bg-white/20 transition-all duration-500 group-hover:h-full group-hover:bg-white/40">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-8 h-[1px] bg-white/20 transition-all duration-500 group-hover:w-full group-hover:bg-white/40">
+                    </div>
+                    <span class="relative z-10 text-xs uppercase tracking-[0.15em] text-white/80 font-extralight group-hover:text-white transition-colors duration-300">
+                        INITIATE SEQUENCE
+                    </span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative z-40 flex justify-between items-end w-full px-6 md:px-12 pb-8 mix-blend-difference">
+        <p class="text-xs text-white/40 tracking-[0.2em] uppercase font-extralight opacity-0" id="hero-bottom-text">
+            DIVE BEYOND THE SURFACE ↓
+        </p>
+        <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center opacity-0"
+            id="hero-circle">
+            <div class="w-1 h-1 bg-white/50 rounded-full"></div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const init = () => {
+                gsap.registerPlugin(ScrollTrigger);
+                gsap.to(".reveal-word", { y: "0%", duration: 1.4, stagger: 0.12, ease: "power4.out", delay: 0.2 });
+                gsap.to(["#hero-subtext", "#hero-cta", "#hero-bottom-text", "#hero-circle"], { opacity: 1, duration: 1.5, stagger: 0.2, ease: "power2.out", delay: 1.2 });
+
+                const canvas = document.getElementById('hero-canvas');
+                const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+                camera.position.z = 10;
+
+                const rayMat = new THREE.ShaderMaterial({
+                    uniforms: { uTime: { value: 0 } },
+                    vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+                    fragmentShader: `varying vec2 vUv; uniform float uTime; void main() { vec2 p = vUv - 0.5; p.x -= 0.2; p.y -= 0.2; float a = atan(p.y, p.x); float r = length(p); float rays = (sin(a * 12.0 + uTime * 0.4) * 0.5 + 0.5) * (sin(a * 8.0 - uTime * 0.25) * 0.5 + 0.5); float glow = exp(-r * 4.0); vec3 color = vec3(0.55, 0.58, 0.62); float mask = smoothstep(0.8, 0.0, r); gl_FragColor = vec4(color, (rays * 0.6 + glow * 0.8) * mask * 0.7); }`,
+                    transparent: true, blending: THREE.AdditiveBlending, depthWrite: false
+                });
+                const rayMesh = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), rayMat);
+                rayMesh.position.set(0, 0, -8);
+                scene.add(rayMesh);
+
+                const ringGroup = new THREE.Group();
+                scene.add(ringGroup);
+                const matSilver = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 1, roughness: 0.1 });
+                const matGlow = new THREE.MeshBasicMaterial({ color: 0x949ca8, wireframe: true, transparent: true, opacity: 0.25 });
+                const ring1 = new THREE.Mesh(new THREE.TorusGeometry(3.0, 0.02, 32, 128), matSilver);
+                const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.08, 16, 64), matGlow);
+                ring1.rotation.x = ring2.rotation.x = Math.PI / 2;
+                ringGroup.add(ring1, ring2);
+
+                const updateLayout = () => {
+                    if (window.innerWidth < 768) ringGroup.position.set(0, 2, -3);
+                    else ringGroup.position.set(4, 0, -1);
+                };
+                updateLayout();
+
+                scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+                const dirLight = new THREE.DirectionalLight(0xffffff, 3);
+                dirLight.position.set(5, 5, 2);
+                scene.add(dirLight);
+
+                let mouseX = 0, mouseY = 0;
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX - window.innerWidth / 2) * 0.001;
+                    mouseY = (e.clientY - window.innerHeight / 2) * 0.001;
+                });
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    updateLayout();
+                });
+
+                const clock = new THREE.Clock();
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    const t = clock.getElapsedTime();
+                    rayMat.uniforms.uTime.value = t;
+                    ring1.rotation.y = t * 0.1;
+                    ring2.rotation.x = (Math.PI / 2) + Math.sin(t * 0.5) * 0.1;
+                    ringGroup.position.y = (window.innerWidth < 768 ? 2 : 0) + Math.sin(t * 0.8) * 0.15;
+                    camera.position.x += (mouseX * 3 - camera.position.x) * 0.02;
+                    camera.position.y += (-mouseY * 3 - camera.position.y) * 0.02;
+                    camera.lookAt(scene.position);
+                    renderer.render(scene, camera);
+                };
+                animate();
+            };
+
+            if (document.readyState === 'complete') init();
+            else window.addEventListener('load', init);
+        })();
+    </script>
+</section>

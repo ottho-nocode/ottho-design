@@ -1,0 +1,195 @@
+<div class="fixed inset-0 bg-[#12141c] text-slate-300 font-sans overflow-hidden flex items-center justify-center antialiased selection:bg-cyan-500/30"
+    style="perspective: 1200px;">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Ambient Background Glows -->
+    <div
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] max-w-[1000px] h-[40vh] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none">
+    </div>
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] max-w-[600px] h-[40vw] max-h-[600px] bg-cyan-600/5 blur-[100px] rounded-full pointer-events-none">
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative w-full max-w-[1200px] h-full flex items-center justify-center" id="scene-container"
+        style="opacity: 0; transform: scale(0.95); transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);">
+
+        <!-- 3D Skewed Floor (Data Rings & Bars) -->
+        <div class="absolute w-[85vw] max-w-[800px] aspect-square flex items-center justify-center" id="disk-floor"
+            style="transform-style: preserve-3d; transform: rotateX(65deg);">
+
+            <!-- Ring 1 (Outermost Faint) -->
+            <div class="absolute w-full h-full border border-slate-700/30 rounded-full"></div>
+
+            <!-- Ring 2 (Dashed Spinning) -->
+            <div
+                class="absolute w-[90%] h-[90%] border border-dashed border-slate-600/40 rounded-full animate-[spin_60s_linear_infinite]">
+            </div>
+
+            <!-- Ring 3 (Thick Track with ticks) -->
+            <div
+                class="absolute w-[75%] h-[75%] rounded-full border-[12px] border-[#181a24] shadow-[0_0_30px_rgba(0,0,0,0.8)_inset,0_0_15px_rgba(6,182,212,0.1)] flex items-center justify-center relative">
+                <div class="absolute inset-0 rounded-full opacity-20"
+                    style="background: repeating-conic-gradient(from 0deg, transparent 0deg, transparent 2deg, #94a3b8 2deg, #94a3b8 3deg);">
+                </div>
+            </div>
+
+            <!-- Ring 4 (Inner Glowing Track Reverse Spin) -->
+            <div
+                class="absolute w-[60%] h-[60%] border-[2px] border-indigo-500/20 rounded-full animate-[spin_40s_linear_infinite_reverse] shadow-[0_0_20px_rgba(99,102,241,0.2)]">
+            </div>
+
+            <!-- Ring 5 (Data Circle Base) -->
+            <div class="absolute w-[45%] h-[45%] border-[4px] border-slate-800/80 rounded-full"></div>
+
+            <!-- Ring 6 (Innermost Frame) -->
+            <div
+                class="absolute w-[28%] h-[28%] border border-cyan-500/30 rounded-full animate-[spin_20s_linear_infinite]">
+            </div>
+
+            <!-- Dynamic Bar Charts Container -->
+            <div class="absolute inset-0" id="bars-container" style="transform-style: preserve-3d;"></div>
+        </div>
+
+        <!-- Central Holographic Sphere -->
+        <div class="absolute z-10 w-[16vw] max-w-[180px] aspect-square rounded-full bg-gradient-to-br from-[#0a1930] to-[#040b16] shadow-[0_0_50px_rgba(6,182,212,0.4),inset_0_0_30px_rgba(255,255,255,0.2)] border border-cyan-400/40 flex items-center justify-center overflow-hidden"
+            style="transform: translateZ(50px);">
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(34,211,238,0.4),transparent)] opacity-80 mix-blend-screen">
+            </div>
+            <div class="absolute inset-0 opacity-20"
+                style="background-image: linear-gradient(rgba(34,211,238,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.5) 1px, transparent 1px); background-size: 15px 15px; background-position: center center; border-radius: 50%;">
+            </div>
+
+            <div class="relative z-10 flex items-end gap-[3px] h-12 w-20 opacity-90 pb-2">
+                <div class="w-full bg-cyan-400 rounded-t-sm shadow-[0_0_8px_rgba(34,211,238,0.8)]" style="height: 40%">
+                </div>
+                <div class="w-full bg-cyan-400 rounded-t-sm shadow-[0_0_8px_rgba(34,211,238,0.8)]" style="height: 60%">
+                </div>
+                <div class="w-full bg-cyan-400 rounded-t-sm shadow-[0_0_8px_rgba(34,211,238,0.8)]" style="height: 30%">
+                </div>
+                <div class="w-full bg-cyan-400 rounded-t-sm shadow-[0_0_8px_rgba(34,211,238,0.8)]" style="height: 80%">
+                </div>
+                <div class="w-full bg-white rounded-t-sm shadow-[0_0_8px_rgba(255,255,255,0.8)]" style="height: 100%">
+                </div>
+                <div class="w-full bg-cyan-400 rounded-t-sm shadow-[0_0_8px_rgba(34,211,238,0.8)]" style="height: 50%">
+                </div>
+                <div class="w-full bg-cyan-400 rounded-t-sm shadow-[0_0_8px_rgba(34,211,238,0.8)]" style="height: 45%">
+                </div>
+            </div>
+            <iconify-icon icon="solar:planet-3-linear" class="absolute text-cyan-500/20 text-[160px]"></iconify-icon>
+        </div>
+
+        <!-- Floating Glassmorphic UI Elements -->
+        <div class="absolute top-[15%] left-[10%] md:left-[20%] w-56 bg-[#0f1219]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-20 floating-element group cursor-pointer hover:bg-[#1a1e29]/80 transition-colors"
+            style="--float-delay: 0s;">
+            <div class="flex items-center gap-3 relative z-10">
+                <div
+                    class="w-9 h-9 rounded-full bg-gradient-to-tr from-fuchsia-500 to-indigo-500 flex items-center justify-center shadow-lg border border-white/20 shrink-0">
+                    <iconify-icon icon="solar:user-linear" class="text-white text-lg"></iconify-icon>
+                </div>
+                <div>
+                    <div
+                        class="text-sm font-semibold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+                        Anna Williams</div>
+                    <div class="text-xs text-slate-400 flex items-center gap-1"><iconify-icon
+                            icon="solar:map-point-linear"></iconify-icon> North Sector</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute top-[20%] right-[10%] md:right-[15%] w-52 bg-[#0f1219]/60 backdrop-blur-md border border-white/10 rounded-xl p-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-20 floating-element group cursor-pointer hover:bg-[#1a1e29]/80 transition-colors"
+            style="--float-delay: -1.5s;">
+            <div class="flex items-center gap-3 relative z-10">
+                <div
+                    class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg border border-white/20 shrink-0">
+                    <iconify-icon icon="solar:user-linear" class="text-white text-lg"></iconify-icon>
+                </div>
+                <div>
+                    <div
+                        class="text-sm font-semibold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+                        David Chen</div>
+                    <div class="text-xs text-slate-400 flex items-center gap-1"><iconify-icon
+                            icon="solar:pulse-2-linear"></iconify-icon> System Nominal</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-[20%] w-full flex justify-center gap-6 z-20 px-4 flex-wrap">
+            <div class="floating-element bg-black/50 backdrop-blur-md border border-slate-700 rounded-full px-4 py-2 flex items-center gap-2 shadow-lg"
+                style="--float-delay: -2s;">
+                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)] animate-pulse"></div>
+                <span class="text-xs font-semibold tracking-tight text-slate-200">Global Sync Active</span>
+            </div>
+            <div class="floating-element bg-black/50 backdrop-blur-md border border-slate-700 rounded-full px-4 py-2 flex items-center gap-2 shadow-lg"
+                style="--float-delay: -0.5s;">
+                <iconify-icon icon="solar:shield-check-linear" class="text-cyan-400 text-sm"></iconify-icon>
+                <span class="text-xs font-semibold tracking-tight text-slate-200">Security Core v2.0</span>
+            </div>
+        </div>
+
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center z-30">
+            <div class="text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-1">System Architecture</div>
+            <div
+                class="flex items-center gap-2 text-xs text-slate-400 bg-white/5 backdrop-blur-md rounded-md px-3 py-1 border border-white/5">
+                <iconify-icon icon="solar:server-linear"></iconify-icon> Cluster Alpha
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                const scene = document.getElementById('scene-container');
+                scene.style.opacity = '1';
+                scene.style.transform = 'scale(1)';
+            }, 100);
+
+            const barsContainer = document.getElementById('bars-container');
+            const numBars = 50;
+            
+            const updateBars = () => {
+                barsContainer.innerHTML = '';
+                const containerWidth = document.getElementById('disk-floor').offsetWidth;
+                const radius = containerWidth * 0.28;
+                
+                for (let i = 0; i < numBars; i++) {
+                    const angle = (i / numBars) * 360;
+                    let h = 15 + Math.random() * 30;
+                    if (i > 5 && i < 15) h += 40 + Math.random() * 30;
+                    if (i > 30 && i < 40) h += 50 + Math.random() * 40;
+                    
+                    const barColor = (angle < 180) ? 'bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.6)]' : 'bg-fuchsia-500 shadow-[0_0_12px_rgba(217,70,239,0.6)]';
+                    const bar = document.createElement('div');
+                    bar.className = `absolute top-1/2 left-1/2 w-1.5 md:w-2 rounded-t-sm ${barColor} opacity-90`;
+                    bar.style.height = `0px`;
+                    bar.style.transformOrigin = 'bottom center';
+                    bar.style.transform = `translate(-50%, -100%) rotateZ(${angle}deg) translateY(-${radius}px) rotateX(-90deg)`;
+                    barsContainer.appendChild(bar);
+
+                    setTimeout(() => {
+                        bar.style.transition = `height 1.5s cubic-bezier(0.16, 1, 0.3, 1) ${i * 20}ms`;
+                        bar.style.height = `${h}px`;
+                    }, 300);
+                }
+            };
+
+            updateBars();
+            window.addEventListener('resize', updateBars);
+
+            const floaters = document.querySelectorAll('.floating-element');
+            let start = null;
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const elapsed = timestamp - start;
+                floaters.forEach(el => {
+                    const delayMs = parseFloat(el.style.getPropertyValue('--float-delay') || 0) * 1000;
+                    const yOffset = Math.sin((elapsed + delayMs) * 0.0015) * 8;
+                    el.style.transform = `translateY(${yOffset}px)`;
+                });
+                window.requestAnimationFrame(step);
+            }
+            window.requestAnimationFrame(step);
+        });
+    </script>
+</div>

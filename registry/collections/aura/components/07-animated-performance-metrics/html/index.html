@@ -1,0 +1,164 @@
+<section
+    class="bg-[#050811] text-slate-200 font-sans antialiased min-h-screen flex items-center justify-center p-4 md:p-12 overflow-x-hidden selection:bg-fuchsia-500/30 selection:text-white">
+    <style>
+        .text-reveal-wrap {
+            display: inline-flex;
+            overflow: hidden;
+            vertical-align: bottom;
+            margin-right: 0.25em;
+            padding-bottom: 0.1em;
+            margin-bottom: -0.1em;
+        }
+
+        .text-reveal-inner {
+            display: inline-block;
+            transform: translateY(110%);
+            will-change: transform;
+        }
+    </style>
+
+    <div
+        class="relative w-full max-w-7xl mx-auto min-h-[650px] md:min-h-[800px] border border-[#1e293b]/80 bg-[#0B1021] overflow-hidden flex flex-col justify-between shadow-2xl shadow-black/80 group">
+        <!-- Internal Grid Guides -->
+        <div
+            class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#2a3a5c] to-transparent opacity-40">
+        </div>
+        <div
+            class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#2a3a5c] to-transparent opacity-20">
+        </div>
+
+        <!-- Flowing Neon Wave -->
+        <canvas id="dataWave"
+            class="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-1000 ease-in-out opacity-90 group-hover:opacity-100"
+            style="z-index: 1;"></canvas>
+
+        <!-- Header Content -->
+        <div class="relative z-10 px-6 py-12 md:px-16 md:py-20 max-w-3xl pointer-events-none">
+            <h2 class="js-reveal-text text-3xl lg:text-4xl tracking-tight font-medium text-white mb-4 leading-tight">
+                Built for relentless scale.
+            </h2>
+            <p
+                class="js-reveal-text text-lg lg:text-xl tracking-tight font-normal text-slate-400 leading-relaxed max-w-2xl">
+                Process critical workflows with stable throughput, low latency, and resilient performance even during
+                unpredictable demand spikes.
+            </p>
+        </div>
+
+        <!-- Bottom Stats Section -->
+        <div
+            class="relative z-10 px-6 py-12 md:px-16 md:py-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 border-t border-[#1e293b]/40 bg-gradient-to-t from-[#0B1021] via-[#0B1021]/80 to-transparent mt-auto pointer-events-none">
+            <div class="flex flex-col js-stat-reveal opacity-0 translate-y-6">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-6xl lg:text-7xl tracking-tight font-medium text-transparent bg-clip-text bg-[linear-gradient(to_right,#FF8A7A,#FF6B9E)] js-counter" data-target="320">0</span>
+                    <span class="text-5xl lg:text-6xl tracking-tight font-medium text-[#FF6B9E]">M+</span>
+                </div>
+                <span class="text-sm font-normal text-slate-400 mt-3 max-w-[220px] leading-snug">automated tasks completed monthly</span>
+            </div>
+
+            <div class="flex flex-col js-stat-reveal opacity-0 translate-y-6">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-6xl lg:text-7xl tracking-tight font-medium text-transparent bg-clip-text bg-[linear-gradient(to_right,#E178ED,#9B66FF)] js-counter" data-target="18">0</span>
+                    <span class="text-5xl lg:text-6xl tracking-tight font-medium text-[#9B66FF]">K+</span>
+                </div>
+                <span class="text-sm font-normal text-slate-400 mt-3 max-w-[220px] leading-snug">events processed every second</span>
+            </div>
+
+            <div class="flex flex-col js-stat-reveal opacity-0 translate-y-6">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-6xl lg:text-7xl tracking-tight font-medium text-transparent bg-clip-text bg-[linear-gradient(to_right,#748EF5,#4AB9FF)] js-counter" data-target="92">0</span>
+                    <span class="text-5xl lg:text-6xl tracking-tight font-medium text-[#4AB9FF]">K+</span>
+                </div>
+                <span class="text-sm font-normal text-slate-400 mt-3 max-w-[220px] leading-snug">decisions executed per minute</span>
+            </div>
+        </div>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                gsap.registerPlugin(ScrollTrigger);
+                const revealTexts = document.querySelectorAll('.js-reveal-text');
+                revealTexts.forEach(el => {
+                    const text = el.textContent;
+                    el.innerHTML = '';
+                    text.split(/\s+/).filter(w => w.trim().length > 0).forEach(word => {
+                        const wrap = document.createElement('span');
+                        wrap.className = 'text-reveal-wrap';
+                        const inner = document.createElement('span');
+                        inner.className = 'text-reveal-inner';
+                        inner.textContent = word;
+                        wrap.appendChild(inner);
+                        el.appendChild(wrap);
+                    });
+                    ScrollTrigger.create({
+                        trigger: el, start: "top 90%",
+                        onEnter: () => { gsap.to(el.querySelectorAll('.text-reveal-inner'), { y: "0%", duration: 0.85, stagger: 0.02, ease: "power3.out" }); },
+                        once: true
+                    });
+                });
+
+                const statBlocks = document.querySelectorAll('.js-stat-reveal');
+                if (statBlocks.length > 0) {
+                    ScrollTrigger.create({
+                        trigger: statBlocks[0].parentElement, start: "top 95%",
+                        onEnter: () => {
+                            gsap.to(statBlocks, { opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: "power2.out" });
+                            document.querySelectorAll('.js-counter').forEach((counter, i) => {
+                                const target = parseInt(counter.getAttribute('data-target'), 10);
+                                gsap.to(counter, { innerHTML: target, duration: 2.5, delay: i * 0.15, ease: "power3.out", snap: { innerHTML: 1 } });
+                            });
+                        },
+                        once: true
+                    });
+                }
+
+                const canvas = document.getElementById('dataWave');
+                const ctx = canvas.getContext('2d');
+                let width, height, time = 0;
+                let currentGlow = 0.5, targetGlow = 0.5;
+
+                function resize() {
+                    const dpr = window.devicePixelRatio || 1;
+                    width = canvas.parentElement.offsetWidth;
+                    height = canvas.parentElement.offsetHeight;
+                    canvas.width = width * dpr; canvas.height = height * dpr;
+                    ctx.scale(dpr, dpr);
+                }
+                window.addEventListener('resize', resize);
+                resize();
+
+                canvas.parentElement.addEventListener('mouseenter', () => targetGlow = 0.85);
+                canvas.parentElement.addEventListener('mouseleave', () => targetGlow = 0.5);
+
+                function renderWave() {
+                    ctx.clearRect(0, 0, width, height);
+                    currentGlow += (targetGlow - currentGlow) * 0.05;
+                    ctx.globalCompositeOperation = 'screen';
+                    for (let i = 0; i < 70; i++) {
+                        ctx.beginPath();
+                        const normalizedI = (i / 70) * 2 - 1;
+                        const grad = ctx.createLinearGradient(0, 0, width, 0);
+                        grad.addColorStop(0, `rgba(255, 110, 199, 0)`);
+                        grad.addColorStop(0.2, `rgba(255, 110, 199, ${currentGlow * 0.25})`);
+                        grad.addColorStop(0.5, `rgba(190, 80, 255, ${currentGlow * 0.35})`);
+                        grad.addColorStop(0.8, `rgba(100, 150, 255, ${currentGlow * 0.25})`);
+                        grad.addColorStop(1, `rgba(100, 150, 255, 0)`);
+                        ctx.strokeStyle = grad; ctx.lineWidth = 1.2;
+                        for (let x = 0; x <= width; x += 20) {
+                            const nx = x / width;
+                            const spread = Math.pow(nx, 2.5) * (height * 0.4);
+                            const wave1 = Math.sin(nx * Math.PI * 1.8 + (time * 0.0006) + normalizedI * 0.6);
+                            const wave2 = Math.cos(nx * Math.PI * 2.3 - (time * 0.0006) * 1.1);
+                            let y = (height * 0.55) + (nx * (height * 0.05)) + (normalizedI * spread) + (wave1 * spread * 0.35) + (wave2 * spread * 0.15);
+                            if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                        }
+                        ctx.stroke();
+                    }
+                    time += 16; requestAnimationFrame(renderWave);
+                }
+                renderWave();
+            });
+        </script>
+    </div>
+</section>

@@ -1,0 +1,191 @@
+<section
+    class="bg-zinc-950 overflow-hidden antialiased relative w-full h-screen text-white font-sans selection:bg-orange-900 selection:text-orange-50">
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.05]"
+        style="background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E'); mix-blend-mode: overlay;">
+    </div>
+
+    <div class="fixed inset-0 z-0 pointer-events-none"
+        style="background: radial-gradient(circle at 85% 50%, #9e2a00 0%, #3a0800 40%, #0a0302 90%);"></div>
+
+    <div class="fixed inset-0 z-0 pointer-events-none mix-blend-screen opacity-60"
+        style="background: radial-gradient(circle at 75% 50%, rgba(255, 120, 0, 0.2) 0%, transparent 60%);"></div>
+
+    <header
+        class="absolute top-8 w-full px-8 md:px-16 z-40 flex justify-between items-center text-xs font-thin tracking-widest text-orange-200/50 uppercase">
+        <div class="flex items-center gap-3">
+            <iconify-icon icon="solar:sun-fog-linear" class="text-lg" style="stroke-width: 1.5;"></iconify-icon>
+            <span>Luminance Core</span>
+        </div>
+        <button class="flex items-center gap-2 hover:text-white transition-colors duration-300">
+            <iconify-icon icon="solar:tuning-square-2-linear" class="text-lg" style="stroke-width: 1.5;"></iconify-icon>
+            <span>Calibrate</span>
+        </button>
+    </header>
+
+    <main class="relative w-full h-full z-20 flex flex-col justify-center pl-8 md:pl-24 lg:pl-32">
+        <div class="relative reveal-trigger inline-flex flex-col max-w-fit">
+
+            <!-- Masked Staggered Title -->
+            <!-- Using a custom clip-path to mask the bottom but allow the intense text shadow to bleed upward and outward -->
+            <h1 class="text-7xl md:text-9xl font-semibold tracking-tight uppercase flex flex-wrap gap-x-4 md:gap-x-8 leading-none"
+                style="text-shadow: 0 0 25px rgba(255,240,220,0.6), 0 0 60px rgba(255,100,0,0.4), 0 0 120px rgba(200,40,0,0.3);">
+                <div class="inline-block" style="clip-path: polygon(-50% -50%, 150% -50%, 150% 100%, -50% 100%);">
+                    <span class="inline-block transform translate-y-[110%] title-word">RAY</span>
+                </div>
+                <div class="inline-block" style="clip-path: polygon(-50% -50%, 150% -50%, 150% 100%, -50% 100%);">
+                    <span class="inline-block transform translate-y-[110%] title-word">OF</span>
+                </div>
+                <div class="inline-block" style="clip-path: polygon(-50% -50%, 150% -50%, 150% 100%, -50% 100%);">
+                    <span class="inline-block transform translate-y-[110%] title-word">LIGHT</span>
+                </div>
+            </h1>
+
+            <!-- Masked Sub Labels -->
+            <div
+                class="flex justify-between w-[95%] md:w-full mt-8 md:mt-12 text-xs text-orange-100/80 uppercase tracking-[0.4rem] md:tracking-[0.8rem] font-thin">
+                <div class="inline-block" style="clip-path: polygon(-50% -50%, 150% -50%, 150% 100%, -50% 100%);">
+                    <span class="inline-block transform translate-y-[120%] label-word">THE</span>
+                </div>
+                <div class="inline-block" style="clip-path: polygon(-50% -50%, 150% -50%, 150% 100%, -50% 100%);">
+                    <span class="inline-block transform translate-y-[120%] label-word">SOURCE</span>
+                </div>
+                <div class="inline-block" style="clip-path: polygon(-50% -50%, 150% -50%, 150% 100%, -50% 100%);">
+                    <span class="inline-block transform translate-y-[120%] label-word">OF</span>
+                </div>
+                <div class="inline-block" style="clip-path: polygon(-50% -50%, 150% -50%, 150% 100%, -50% 100%);">
+                    <span class="inline-block transform translate-y-[120%] label-word">LIFE</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="sculpture-container"
+        class="absolute top-1/2 right-[-15vw] md:right-[-5vw] -translate-y-1/2 z-10 w-[70vw] md:w-[50vw] h-[150vh] origin-right pointer-events-none">
+        <!-- JavaScript injects layered blades here -->
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- 3D Radial Sculpture Generation ---
+            const container = document.getElementById('sculpture-container');
+            const numBlades = 42; 
+            
+            for (let i = 0; i < numBlades; i++) {
+                const blade = document.createElement('div');
+                blade.className = 'absolute top-1/2 right-0 origin-right blade opacity-0';
+                
+                // Responsive dimensions simulated via inline percentages
+                blade.style.width = window.innerWidth > 768 ? '65vw' : '90vw';
+                blade.style.height = '6vw';
+                blade.style.minHeight = '35px';
+                
+                // Feathered / curved blade shape (tapered on the left, flat on the right pivot point)
+                blade.style.borderRadius = '100% 0 0 100% / 50% 0 0 50%';
+                
+                // Spread the blades across a beautiful sweeping arc (-85deg to 85deg)
+                const progress = i / (numBlades - 1);
+                const angle = -85 + (progress * 170);
+                blade.style.transform = `translateY(-50%) rotate(${angle}deg)`;
+                
+                // Keep overlapping correctly
+                blade.style.zIndex = i;
+
+                // Premium glossy gradient + sharp 3D specular edge highlights
+                blade.style.background = `
+                    linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 8%, rgba(0,0,0,0) 85%, rgba(0,0,0,0.8) 100%),
+                    linear-gradient(to right, 
+                        #ffedcc 0%, 
+                        #ff6200 15%, 
+                        #a11b00 45%, 
+                        #1f0400 80%,
+                        #050100 100%
+                    )
+                `;
+                
+                // Soft shadow and internal rim light to create intense physical thickness
+                blade.style.boxShadow = `
+                    0px 18px 45px -8px rgba(0,0,0,0.95),
+                    inset 0px 2px 4px rgba(255, 255, 255, 0.4),
+                    inset 0px -4px 12px rgba(0, 0, 0, 0.9)
+                `;
+
+                container.appendChild(blade);
+            }
+
+            // --- Animation Timelines ---
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+            // 1. Hypnotic Unfurling of the Blades
+            tl.to('.blade', {
+                opacity: 1,
+                duration: 2.5,
+                stagger: {
+                    amount: 1.8,
+                    from: "center" 
+                },
+                ease: 'power2.out'
+            }, 0.2);
+
+            // 2. Masked Staggered Text Reveal
+            tl.to('.title-word', {
+                y: '0%',
+                duration: 1.6,
+                stagger: 0.18,
+                ease: 'expo.out',
+                scrollTrigger: {
+                    trigger: '.reveal-trigger',
+                    start: 'top 85%',
+                }
+            }, 0.6);
+
+            tl.to('.label-word', {
+                y: '0%',
+                duration: 1.4,
+                stagger: 0.12,
+                ease: 'expo.out',
+                scrollTrigger: {
+                    trigger: '.reveal-trigger',
+                    start: 'top 85%',
+                }
+            }, 1.0);
+
+            // 3. Ambient Breathing & Sweeping Motion
+            
+            // Subtle sway of the entire hub
+            gsap.to(container, {
+                rotation: -4,
+                duration: 16,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+
+            // Organic flexing of individual blades
+            const blades = gsap.utils.toArray('.blade');
+            blades.forEach((blade, index) => {
+                gsap.to(blade, {
+                    rotation: `+=${2 + (index % 2.5)}`,
+                    scaleX: 1.015 + (index % 3) * 0.005,
+                    duration: 5 + (index % 3),
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                    delay: index * 0.06
+                });
+            });
+            
+            // Handle resize elegantly
+            window.addEventListener('resize', () => {
+                const width = window.innerWidth > 768 ? '65vw' : '90vw';
+                blades.forEach(blade => blade.style.width = width);
+            });
+        });
+    </script>
+</section>
