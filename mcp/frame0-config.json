@@ -1,0 +1,7 @@
+{
+  "frame0": {
+    "command": "npx",
+    "args": ["-y", "frame0-mcp-server"],
+    "env": {}
+  }
+}
