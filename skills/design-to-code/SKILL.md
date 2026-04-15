@@ -241,13 +241,42 @@ Save the generated code to the project directory:
 
 ## Output Format Choice
 
-Before starting Step 3, ask the user which output format they want:
+Before starting Step 3, ask the user **deux questions** :
+
+### 1. Format de sortie
 
 - **HTML only** — single self-contained HTML file with embedded styles
 - **React only** — page component + individual section components (TSX)
 - **Both** — generate both HTML and React versions
 
 This choice determines which component format to read from the registry (HTML or React) and how the final assembly is structured.
+
+### 2. Layout de la page
+
+> **Layout de la page ?**
+>
+> - **Plein page** — les sections occupent 100% de la largeur de l'ecran. Le contenu peut etre edge-to-edge (hero, backgrounds) ou avoir un padding interne.
+> - **Boxed** — le contenu est centre avec une largeur max de 80% (`max-width: 80%; margin: 0 auto`). Les backgrounds des sections restent full-width, seul le contenu interieur est contraint.
+
+**Implementation :**
+
+**Plein page** — pas de conteneur global, chaque section gere son propre padding :
+```html
+<section class="w-full px-6 md:px-12 py-16">
+  <!-- contenu direct -->
+</section>
+```
+
+**Boxed** — chaque section a un conteneur interieur centre :
+```html
+<section class="w-full py-16">
+  <div class="max-w-[80%] mx-auto px-6">
+    <!-- contenu contraint -->
+  </div>
+</section>
+```
+
+Cela permet aux backgrounds (images, gradients, couleurs) de rester full-width tout en centrant le contenu texte/composants. Appliquer ce layout de maniere coherente a **toutes** les sections sauf si une section specifique necessite un traitement different (ex: hero plein ecran meme en mode boxed).
 
 ---
 
