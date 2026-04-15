@@ -1,5 +1,5 @@
 ---
-name: mockup
+name: ottho-design_mockup
 description: Create high-fidelity mockups using Pencil.dev. Use for the second phase of design — applying visual styling (colors, typography, spacing) to a wireframe structure. Triggers on /mockup.
 ---
 

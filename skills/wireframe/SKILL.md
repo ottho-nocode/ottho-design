@@ -1,5 +1,5 @@
 ---
-name: wireframe
+name: ottho-design_wireframe
 description: Create low-fidelity wireframes using Frame0. Use for the first phase of design work — structuring page layout and information hierarchy before visual design. Triggers on /wireframe.
 ---
 

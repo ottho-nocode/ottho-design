@@ -1,5 +1,5 @@
 ---
-name: component-registry
+name: ottho-design_components
 description: Search, browse, and manage collections of UI components (HTML/React). Use when looking for pre-built components to integrate into a design. Triggers on /components.
 ---
 

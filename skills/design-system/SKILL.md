@@ -1,5 +1,5 @@
 ---
-name: design-system
+name: ottho-design_review
 description: Critique and improve UI designs using fundamental design principles. Use when reviewing screenshots, mockups, or code for visual quality. Triggers on /design-review or when asked to improve a design.
 ---
 

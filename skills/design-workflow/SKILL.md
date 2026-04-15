@@ -1,5 +1,5 @@
 ---
-name: design-workflow
+name: ottho-design_workflow
 description: Orchestrate the complete design pipeline from brief to refined code. 10-step methodology — brief → inspirations → design system → wireframe (Frame0) → mockup (Pencil.dev) → code → refinement with components. Triggers on /design.
 ---
 

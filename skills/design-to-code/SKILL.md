@@ -1,5 +1,5 @@
 ---
-name: design-to-code
+name: ottho-design_code
 description: Generate production code from mockups by matching and adapting components from the registry. Use for the final phase of design — turning a validated mockup into HTML/React code. Triggers on /design-to-code.
 ---
 
