@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System — {{PROJECT_NAME}}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: {{PRIMARY}};
+            --secondary: {{SECONDARY}};
+            --accent: {{ACCENT}};
+            --background: {{BACKGROUND}};
+            --text: {{TEXT}};
+            --text-secondary: {{TEXT_SECONDARY}};
+            --heading-font: {{HEADING_FONT}};
+            --body-font: {{BODY_FONT}};
+            --radius: {{BORDER_RADIUS}};
+            --spacing-base: {{SPACING_BASE}};
+        }
+
+        body {
+            font-family: var(--body-font), system-ui, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .header {
+            background: #111;
+            border-bottom: 1px solid #222;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 {
+            font-family: var(--heading-font), system-ui, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .header .badge {
+            background: var(--primary);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px;
+        }
+
+        section {
+            margin-bottom: 64px;
+        }
+
+        .section-title {
+            font-family: var(--heading-font), system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #222;
+        }
+
+        /* ─── Colors ─── */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .color-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #151515;
+            border: 1px solid #222;
+        }
+        .color-swatch {
+            height: 100px;
+            width: 100%;
+        }
+        .color-info {
+            padding: 12px 16px;
+        }
+        .color-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .color-value {
+            font-size: 12px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: #888;
+        }
+
+        /* ─── Typography ─── */
+        .type-scale {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .type-row {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+            padding: 16px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .type-meta {
+            min-width: 120px;
+            font-size: 12px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: #666;
+        }
+        .type-sample-heading {
+            font-family: var(--heading-font), system-ui, sans-serif;
+            color: #fff;
+        }
+        .type-sample-body {
+            font-family: var(--body-font), system-ui, sans-serif;
+            color: #ccc;
+        }
+
+        /* ─── Spacing ─── */
+        .spacing-scale {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .spacing-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .spacing-label {
+            min-width: 60px;
+            font-size: 12px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: #666;
+            text-align: right;
+        }
+        .spacing-bar {
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .spacing-bar:hover {
+            opacity: 1;
+        }
+
+        /* ─── Buttons ─── */
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-family: var(--body-font), system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-primary:hover { filter: brightness(1.15); }
+        .btn-secondary {
+            background: var(--secondary);
+            color: #fff;
+        }
+        .btn-secondary:hover { filter: brightness(1.3); }
+        .btn-accent {
+            background: var(--accent);
+            color: #000;
+        }
+        .btn-accent:hover { filter: brightness(1.1); }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #444;
+        }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-ghost {
+            background: transparent;
+            color: #aaa;
+        }
+        .btn-ghost:hover { color: #fff; }
+
+        /* ─── Cards ─── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: #151515;
+            border: 1px solid #222;
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #444; }
+        .card h3 {
+            font-family: var(--heading-font), system-ui, sans-serif;
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.5;
+        }
+        .card .tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 100px;
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* ─── Inputs ─── */
+        .input-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 400px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #aaa;
+            margin-bottom: 6px;
+        }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: var(--radius);
+            color: #fff;
+            font-family: var(--body-font), system-ui, sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        /* ─── Mood ─── */
+        .mood-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .mood-tag {
+            padding: 8px 16px;
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 100px;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            text-align: center;
+            padding: 32px;
+            color: #444;
+            font-size: 12px;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 48px;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family={{HEADING_FONT_URL}}&family={{BODY_FONT_URL}}&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+    <h1>{{PROJECT_NAME}} — Design System</h1>
+    <span class="badge">v1.0</span>
+</div>
+
+<div class="container">
+
+    <!-- Colors -->
+    <section>
+        <div class="section-title">Couleurs</div>
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-swatch" style="background: var(--primary)"></div>
+                <div class="color-info">
+                    <div class="color-name">Primary</div>
+                    <div class="color-value">{{PRIMARY}}</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: var(--secondary)"></div>
+                <div class="color-info">
+                    <div class="color-name">Secondary</div>
+                    <div class="color-value">{{SECONDARY}}</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: var(--accent)"></div>
+                <div class="color-info">
+                    <div class="color-name">Accent</div>
+                    <div class="color-value">{{ACCENT}}</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: var(--background)"></div>
+                <div class="color-info">
+                    <div class="color-name">Background</div>
+                    <div class="color-value">{{BACKGROUND}}</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: var(--text)"></div>
+                <div class="color-info">
+                    <div class="color-name">Text</div>
+                    <div class="color-value">{{TEXT}}</div>
+                </div>
+            </div>
+            <div class="color-card">
+                <div class="color-swatch" style="background: var(--text-secondary)"></div>
+                <div class="color-info">
+                    <div class="color-name">Text Secondary</div>
+                    <div class="color-value">{{TEXT_SECONDARY}}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography -->
+    <section>
+        <div class="section-title">Typographie</div>
+        <div class="type-scale">
+            <div class="type-row">
+                <div class="type-meta">48px / H1</div>
+                <div class="type-sample-heading" style="font-size: 48px; line-height: 1.1;">Heading One</div>
+            </div>
+            <div class="type-row">
+                <div class="type-meta">32px / H2</div>
+                <div class="type-sample-heading" style="font-size: 32px; line-height: 1.2;">Heading Two</div>
+            </div>
+            <div class="type-row">
+                <div class="type-meta">24px / H3</div>
+                <div class="type-sample-heading" style="font-size: 24px; line-height: 1.3;">Heading Three</div>
+            </div>
+            <div class="type-row">
+                <div class="type-meta">20px / H4</div>
+                <div class="type-sample-heading" style="font-size: 20px; line-height: 1.3;">Heading Four</div>
+            </div>
+            <div class="type-row">
+                <div class="type-meta">16px / Body</div>
+                <div class="type-sample-body" style="font-size: 16px;">Corps de texte principal. The quick brown fox jumps over the lazy dog.</div>
+            </div>
+            <div class="type-row">
+                <div class="type-meta">14px / Small</div>
+                <div class="type-sample-body" style="font-size: 14px; color: #888;">Texte secondaire, labels, captions.</div>
+            </div>
+        </div>
+        <div style="margin-top: 24px; padding: 16px; background: #111; border-radius: 8px; font-size: 13px; color: #666; font-family: 'SF Mono', monospace;">
+            Titres: <span style="color: #fff;">{{HEADING_FONT}}</span> &nbsp;|&nbsp; Corps: <span style="color: #fff;">{{BODY_FONT}}</span>
+        </div>
+    </section>
+
+    <!-- Spacing -->
+    <section>
+        <div class="section-title">Espacement (base: {{SPACING_BASE}}px)</div>
+        <div class="spacing-scale">
+            <div class="spacing-row"><div class="spacing-label">4px</div><div class="spacing-bar" style="width: 4px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">8px</div><div class="spacing-bar" style="width: 8px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">12px</div><div class="spacing-bar" style="width: 12px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">16px</div><div class="spacing-bar" style="width: 16px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">24px</div><div class="spacing-bar" style="width: 24px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">32px</div><div class="spacing-bar" style="width: 32px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">48px</div><div class="spacing-bar" style="width: 48px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">64px</div><div class="spacing-bar" style="width: 64px"></div></div>
+            <div class="spacing-row"><div class="spacing-label">96px</div><div class="spacing-bar" style="width: 96px"></div></div>
+        </div>
+    </section>
+
+    <!-- Buttons -->
+    <section>
+        <div class="section-title">Boutons</div>
+        <div class="button-grid">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-accent">Accent</button>
+            <button class="btn btn-outline">Outline</button>
+            <button class="btn btn-ghost">Ghost</button>
+        </div>
+    </section>
+
+    <!-- Cards -->
+    <section>
+        <div class="section-title">Cartes</div>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Feature Title</h3>
+                <p>Description courte de la feature avec quelques details importants.</p>
+                <span class="tag">Category</span>
+            </div>
+            <div class="card">
+                <h3>Another Feature</h3>
+                <p>Un autre exemple de carte avec du contenu pour montrer le style.</p>
+                <span class="tag">Category</span>
+            </div>
+            <div class="card">
+                <h3>Third Feature</h3>
+                <p>Troisieme carte pour visualiser la grille et l'espacement.</p>
+                <span class="tag">Category</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inputs -->
+    <section>
+        <div class="section-title">Formulaires</div>
+        <div class="input-grid">
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="nom@exemple.com">
+            </div>
+            <div class="input-group">
+                <label>Message</label>
+                <textarea rows="3" placeholder="Votre message..."></textarea>
+            </div>
+            <button class="btn btn-primary" style="align-self: flex-start;">Envoyer</button>
+        </div>
+    </section>
+
+    <!-- Mood -->
+    <section>
+        <div class="section-title">Ambiance</div>
+        <div class="mood-tags">
+            {{MOOD_TAGS}}
+        </div>
+    </section>
+
+    <!-- Border Radius -->
+    <section>
+        <div class="section-title">Border Radius</div>
+        <div style="display: flex; gap: 24px; align-items: end;">
+            <div style="width: 80px; height: 80px; background: var(--primary); border-radius: var(--radius); opacity: 0.7;"></div>
+            <div style="font-size: 13px; color: #666; font-family: 'SF Mono', monospace;">{{BORDER_RADIUS}}</div>
+        </div>
+    </section>
+
+</div>
+
+<div class="footer">
+    Generated by Ottho Design Studio — {{DATE}}
+</div>
+
+</body>
+</html>

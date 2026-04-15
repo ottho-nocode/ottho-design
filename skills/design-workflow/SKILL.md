@@ -118,6 +118,25 @@ Demander : **Valider / Ajuster / Recommencer**
 
 Si ajuster : modifier les elements demandes et re-proposer.
 
+### Generer la page Design System HTML
+
+Une fois le design system valide, **generer un fichier HTML** pour le visualiser dans le navigateur :
+
+1. Lire le template : **`/Users/thibaultmarty/.claude/plugins/design-studio/templates/design-system.html`**
+2. Remplacer les placeholders `{{...}}` par les valeurs du design system valide :
+   - `{{PROJECT_NAME}}` — nom du projet (depuis le brief)
+   - `{{PRIMARY}}`, `{{SECONDARY}}`, `{{ACCENT}}`, `{{BACKGROUND}}`, `{{TEXT}}`, `{{TEXT_SECONDARY}}` — couleurs
+   - `{{HEADING_FONT}}`, `{{BODY_FONT}}` — noms des fontes
+   - `{{HEADING_FONT_URL}}`, `{{BODY_FONT_URL}}` — noms des fontes encodes pour Google Fonts URL (espaces remplacees par +)
+   - `{{BORDER_RADIUS}}` — ex: "12px"
+   - `{{SPACING_BASE}}` — ex: "8"
+   - `{{MOOD_TAGS}}` — generer des `<span class="mood-tag">mot-cle</span>` pour chaque mot d'ambiance
+   - `{{DATE}}` — date du jour
+3. Sauvegarder le fichier dans le projet : `./design-system.html`
+4. Proposer a l'utilisateur d'ouvrir le fichier : `open ./design-system.html`
+
+Cette page HTML sert de reference visuelle tout au long du projet.
+
 Stocker le design system valide dans le state.
 
 ---
