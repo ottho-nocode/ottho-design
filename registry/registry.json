@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "collections": [
+    {
+      "name": "aura",
+      "description": "UI components from aura.build — heroes, pricing, features, dashboards",
+      "path": "./collections/aura",
+      "source": "https://aura.build/components",
+      "categories": ["hero", "pricing", "features", "dashboard", "cta", "section", "background"]
+    }
+  ]
+}
