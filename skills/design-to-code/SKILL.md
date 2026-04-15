@@ -42,9 +42,23 @@ Sections identified:
 
 ### Step 2: Match Components
 
-For each section identified in Step 1, query the component registry:
+This step behaves differently depending on whether a component map already exists from the design-workflow pipeline.
 
-1. Run `/components search <section-type>` to find candidates.
+#### A) Component map available (called from `/design` pipeline after Phase 3)
+
+If `component_matching.component_map` exists in the pipeline state, use it directly — do not re-search the registry or re-prompt the user. The map specifies each section's decision:
+
+- `"use_registry"` — the section will use the specified registry component (proceed to Step 3 adaptation).
+- `"keep_custom"` — the section will be generated from scratch (proceed to Step 3 scratch generation).
+- `"skip"` — the section is excluded from the final output entirely.
+
+Simply confirm the map to the user in a summary table and proceed to Step 3.
+
+#### B) No component map (standalone `/design-to-code` invocation)
+
+When invoked standalone without a prior matching phase, perform the full search:
+
+1. Run `/components search <section-type>` to find candidates for each section.
 2. Present the **top 3 matches** to the user for each section:
 
 ```
@@ -56,6 +70,10 @@ Section 1 — hero:
 ```
 
 3. The user picks a component for each section or skips (S) to have the code generated from scratch.
+
+#### Note: Side-by-side comparison (workflow context)
+
+When called from the full `/design` pipeline, the side-by-side comparison (mockup section vs Aura component) happens in Phase 3 (Component Matching) before this skill is invoked. The user has already made their choices, so Step 2 here simply consumes the resulting component map without repeating the comparison flow.
 
 ---
 
@@ -177,7 +195,8 @@ This skill can be invoked independently via `/design-to-code` without going thro
 
 This skill is part of the **design-studio** plugin pipeline:
 
-- **component-registry** — queried in Step 2 to find matching components for each section.
+- **component-registry** — queried in Step 2 to find matching components for each section (standalone mode only; in the full pipeline, the component map is pre-built in Phase 3).
+- **component matching (Phase 3)** — when called from the full `/design` pipeline, provides a `component_matching.component_map` that Step 2 consumes directly, skipping the search and user selection.
 - **design-system** — invoked in Step 5 to validate the final output against the 6 design principles.
 - **mockup** — provides the design spec JSON that feeds into Step 1 (section identification).
-- **design-workflow** — orchestrates the full pipeline and calls design-to-code as the final code generation phase.
+- **design-workflow** — orchestrates the full pipeline and calls design-to-code as Phase 4 (the final code generation phase).
