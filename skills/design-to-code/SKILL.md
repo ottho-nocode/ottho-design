@@ -9,9 +9,17 @@ Take a validated mockup and generate production code by matching sections to reg
 
 ---
 
-## Prerequisites
+## MANDATORY FIRST STEP — Load Component Registry
 
-- **Component registry** at `~/.claude/plugins/design-studio/registry/` with at least one registered collection. Read `~/.claude/plugins/design-studio/registry/registry.json` to discover collections, then read each collection's `manifest.json` to find components.
+**Before ANY code generation, you MUST use the Read tool to load the component registry:**
+
+1. Read **`/Users/thibaultmarty/.claude/plugins/design-studio/registry/registry.json`**
+2. Read **`/Users/thibaultmarty/.claude/plugins/design-studio/registry/collections/aura/manifest.json`**
+
+This gives you 35 pre-built components (heroes, pricing, features, dashboards, etc.) to match against the design. **Do NOT skip this step. Do NOT say "no components available" without reading these files.**
+
+## Other Prerequisites
+
 - **Design spec** from the mockup phase (design spec JSON with palette, typography, spacing, sections) **or** a screenshot/description of the target design.
 
 ---

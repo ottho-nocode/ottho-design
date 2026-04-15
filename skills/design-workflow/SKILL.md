@@ -13,6 +13,15 @@ Run the complete design-to-code pipeline step by step. Each phase produces outpu
 
 `/design`
 
+## MANDATORY: Load Component Registry at Start
+
+**At the beginning of the workflow (before Phase 0), you MUST use the Read tool to load:**
+
+1. **`/Users/thibaultmarty/.claude/plugins/design-studio/registry/registry.json`**
+2. **`/Users/thibaultmarty/.claude/plugins/design-studio/registry/collections/aura/manifest.json`**
+
+Keep the component list in memory for Phase 3 (Component Matching). There are 35 pre-built components available. **Never say "no components available" — they are always there.**
+
 ## Pipeline
 
 ```

@@ -7,21 +7,22 @@ description: Search, browse, and manage collections of UI components (HTML/React
 
 Manage an extensible registry of UI component collections. The registry indexes pre-built HTML and React components organized into collections, each with its own manifest. Use this skill to search, browse, add, and remove components or entire collections.
 
-## Plugin Root
+## MANDATORY FIRST STEP
 
-The registry lives at:
+**Before doing ANYTHING else, you MUST read the registry files using the Read tool:**
 
-```
-~/.claude/plugins/design-studio/registry/
-```
+1. Read this file to get the list of collections:
+   **`/Users/thibaultmarty/.claude/plugins/design-studio/registry/registry.json`**
 
-**IMPORTANT:** All file paths in this skill are relative to `~/.claude/plugins/design-studio/`. When reading component files, always resolve paths from this root. For example, to read a component:
+2. For each collection in `registry.json`, read its manifest:
+   **`/Users/thibaultmarty/.claude/plugins/design-studio/registry/collections/aura/manifest.json`**
 
-```
-~/.claude/plugins/design-studio/registry/collections/aura/manifest.json
-```
+3. Now you have the full list of components. Use it to answer any search/list/info query.
 
-Start by reading `~/.claude/plugins/design-studio/registry/registry.json` to discover available collections, then read each collection's `manifest.json` to list components.
+4. To read a component's source code, the file path is:
+   **`/Users/thibaultmarty/.claude/plugins/design-studio/registry/collections/<collection>/components/<component-dir>/<format>/`**
+
+**Do NOT say "no components available" without reading these files first.**
 
 ## Commands
 
