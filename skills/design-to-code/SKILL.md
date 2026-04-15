@@ -100,6 +100,68 @@ For skipped sections (user chose S), generate the code from scratch following th
 
 ---
 
+### Step 3b: Integrate Images
+
+**Read image parameters from the workflow state** (if available):
+- `mockup.image_density` — 0 (none), 1 (few: 1-3), 2 (medium: up to 5), 3 (high: almost all sections)
+- `mockup.image_type` — "realistic" or "illustration"
+- `mockup.image_source` — "unsplash", "pexels", "pixabay", "undraw", "humaaans", "storyset", or "custom"
+
+If no state, ask the user:
+> **Images dans le code ?** 0: aucune / 1: peu (1-3) / 2: moyenne (5 max) / 3: haute
+
+#### Image density → section mapping
+
+Based on the density level, decide which sections get images:
+
+| Density | Sections with images |
+|---|---|
+| 0 — Aucune | No images. Use icons, solid colors, gradients only |
+| 1 — Peu | Hero only (+ optionally 1 feature illustration) |
+| 2 — Moyenne | Hero + features + 1-2 other key sections |
+| 3 — Haute | All sections except footer get at least one image |
+
+#### Sourcing images
+
+**Realistic photos:**
+- **Unsplash**: use `https://images.unsplash.com/photo-{id}?w=800&q=80` — search for relevant photos via WebSearch ("unsplash {keyword}") and use direct image URLs
+- **Pexels**: use `https://images.pexels.com/photos/{id}/pexels-photo-{id}.jpeg?w=800` — same search approach
+- **Pixabay**: search and use direct URLs
+
+**Illustrations:**
+- **unDraw**: download SVGs from undraw.co — customize the primary color to match the design system. Use `https://undraw.co/api/search?query={keyword}` or embed inline SVGs
+- **Humaaans**: use character illustrations with the design system colors
+- **Storyset**: animated illustrations from storyset.com
+
+**Custom** (`mockup.image_source == "custom"`):
+- Check for images in `./images/` or `./illustrations/` directory in the project
+- Use `Glob` to find files: `./images/**/*.{png,jpg,jpeg,svg,webp}`
+- Reference them with relative paths in the HTML/React code
+
+#### Implementation in code
+
+For **HTML**: use `<img>` tags with proper `alt`, `loading="lazy"`, and responsive sizing:
+```html
+<img src="https://images.unsplash.com/photo-xxx?w=800&q=80" 
+     alt="Description contextuelle" 
+     loading="lazy" 
+     class="w-full h-auto object-cover rounded-lg">
+```
+
+For **React**: same approach with JSX:
+```tsx
+<img src="https://images.unsplash.com/photo-xxx?w=800&q=80" 
+     alt="Description contextuelle" 
+     loading="lazy" 
+     className="w-full h-auto object-cover rounded-lg" />
+```
+
+For **illustrations (SVG)**: embed inline when possible for color customization, or use `<img>` for external files.
+
+**IMPORTANT:** Always use real, working image URLs — never use placeholder services like `via.placeholder.com`. If you cannot find a suitable image, use a CSS gradient or solid color background as fallback, NOT a broken URL.
+
+---
+
 ### Step 4: Assemble
 
 Combine all adapted sections into a complete page:
