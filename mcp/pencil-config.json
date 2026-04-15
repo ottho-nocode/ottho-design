@@ -1,0 +1,8 @@
+{
+  "pencil": {
+    "type": "builtin",
+    "app": "Pencil",
+    "docs": "https://openpencil.dev/programmable/mcp-server",
+    "note": "Pencil MCP server runs inside the Pencil desktop app. Launch Pencil and enable MCP in settings."
+  }
+}
