@@ -137,6 +137,30 @@ Une fois le design system valide, **generer un fichier HTML** pour le visualiser
 
 Cette page HTML sert de reference visuelle tout au long du projet.
 
+### Generer le document DESIGN.md
+
+**En plus du HTML**, generer un fichier `DESIGN.md` a la racine du projet. Ce document est la **charte graphique** du projet, consultable par tous les developpeurs et par Claude dans les sessions futures.
+
+1. Lire le template : **`/Users/thibaultmarty/.claude/plugins/design-studio/templates/DESIGN.md`**
+2. Remplacer tous les placeholders `{{...}}` par les valeurs du brief et du design system :
+   - Informations brief : `{{PROJECT_NAME}}`, `{{OBJECTIVE}}`, `{{AUDIENCE}}`, `{{CONSTRAINTS}}`
+   - Inspirations : `{{INSPIRATIONS}}` — liste des URLs analysees avec les observations cles
+   - Couleurs : `{{PRIMARY}}`, `{{SECONDARY}}`, `{{ACCENT}}`, `{{BACKGROUND}}`, `{{TEXT}}`, `{{TEXT_SECONDARY}}`
+   - Pour les swatches : `{{PRIMARY_SWATCH}}` etc. — utiliser un emoji carre colore ou simplement le nom de la couleur
+   - Typo : `{{HEADING_FONT}}`, `{{BODY_FONT}}`, `{{HEADING_FONT_URL}}`, `{{BODY_FONT_URL}}`
+   - Spacing : `{{SPACING_BASE}}`
+   - Style : `{{BORDER_RADIUS}}`, `{{SHADOWS}}`
+   - Composants : `{{CARD_BACKGROUND}}`, `{{CARD_BORDER}}`, `{{INPUT_BACKGROUND}}`, `{{INPUT_BORDER}}` — deduire des couleurs du DS
+   - Layout : `{{LAYOUT_MODE}}` (remplir plus tard au Step 9), `{{LAYOUT_CSS}}`
+   - Images : `{{IMAGE_DENSITY}}`, `{{IMAGE_TYPE}}`, `{{IMAGE_SOURCE}}`, `{{IMAGE_GUIDELINES}}` — remplir aux Steps 6-7
+   - Ambiance : `{{MOOD_DESCRIPTION}}`, `{{MOOD_KEYWORDS}}`
+   - Structure : `{{SECTIONS_LIST}}` — remplir au Step 4
+   - `{{DATE}}` — date du jour
+3. Sauvegarder a la racine du projet : `./DESIGN.md`
+4. **Mettre a jour le fichier au fil du workflow** : quand de nouvelles infos sont disponibles (sections au Step 4, images aux Steps 6-7, layout au Step 9), relire et mettre a jour les sections correspondantes du DESIGN.md
+
+Ce fichier sera automatiquement lu par Claude dans les futures sessions grace a sa presence a la racine du projet, assurant la coherence du design sur toute la duree du projet.
+
 Stocker le design system valide dans le state.
 
 ---
