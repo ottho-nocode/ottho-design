@@ -6,7 +6,7 @@ SKILLS_TARGET="$HOME/.claude/skills"
 MCP_CONFIG="$HOME/.mcp.json"
 
 echo ""
-echo "=== design-studio plugin — install ==="
+echo "=== Ottho Design Plugin — install ==="
 echo ""
 
 # ─── 1. Symlink skills ───────────────────────────────────────────────
@@ -14,18 +14,25 @@ echo ""
 echo "▸ Linking skills into $SKILLS_TARGET ..."
 mkdir -p "$SKILLS_TARGET"
 
-for skill_dir in "$PLUGIN_DIR"/skills/*/; do
-  skill_name="$(basename "$skill_dir")"
-  link_name="design-studio-${skill_name}"
-  link_path="$SKILLS_TARGET/$link_name"
+link_skill() {
+  local skill_dir="$1"
+  local link_name="$2"
+  local link_path="$SKILLS_TARGET/$link_name"
 
   if [ -L "$link_path" ] || [ -e "$link_path" ]; then
     echo "  ⏭  $link_name (already exists, skipping)"
   else
     ln -s "$skill_dir" "$link_path"
-    echo "  ✅ $link_name → $skill_dir"
+    echo "  ✅ $link_name"
   fi
-done
+}
+
+link_skill "$PLUGIN_DIR/skills/design-workflow"    "ottho-design_workflow"
+link_skill "$PLUGIN_DIR/skills/design-system"      "ottho-design_review"
+link_skill "$PLUGIN_DIR/skills/wireframe"          "ottho-design_wireframe"
+link_skill "$PLUGIN_DIR/skills/mockup"             "ottho-design_mockup"
+link_skill "$PLUGIN_DIR/skills/design-to-code"     "ottho-design_code"
+link_skill "$PLUGIN_DIR/skills/component-registry" "ottho-design_components"
 
 # ─── 2. Configure Frame0 MCP ─────────────────────────────────────────
 
@@ -75,10 +82,10 @@ echo ""
 echo "=== Installation complete ==="
 echo ""
 echo "Available slash commands:"
-echo "  /design          — Full design workflow (wireframe → mockup → code)"
-echo "  /wireframe       — Generate wireframes with Frame0"
-echo "  /mockup          — Create high-fidelity mockups with Pencil"
-echo "  /design-to-code  — Convert designs to production code"
-echo "  /design-review   — Review and validate design output"
-echo "  /components      — Browse and use the component registry"
+echo "  /ottho-design_workflow    — Full 10-step design workflow"
+echo "  /ottho-design_wireframe   — Wireframe with Frame0"
+echo "  /ottho-design_mockup      — High-fidelity mockup with Pencil"
+echo "  /ottho-design_code        — Convert designs to production code"
+echo "  /ottho-design_review      — Design critique (6 principles)"
+echo "  /ottho-design_components  — Component registry (search, list, add)"
 echo ""

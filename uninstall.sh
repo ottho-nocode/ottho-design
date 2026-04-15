@@ -5,23 +5,33 @@ SKILLS_TARGET="$HOME/.claude/skills"
 MCP_CONFIG="$HOME/.mcp.json"
 
 echo ""
-echo "=== design-studio plugin — uninstall ==="
+echo "=== Ottho Design Plugin — uninstall ==="
 echo ""
 
 # ─── 1. Remove skill symlinks ────────────────────────────────────────
 
-echo "▸ Removing design-studio-* symlinks from $SKILLS_TARGET ..."
+echo "▸ Removing ottho-design_* symlinks from $SKILLS_TARGET ..."
 
 found=0
-for link in "$SKILLS_TARGET"/design-studio-*; do
+
+# Remove new naming convention
+for link in "$SKILLS_TARGET"/ottho-design_*; do
   [ -L "$link" ] || [ -e "$link" ] || continue
   rm -f "$link"
   echo "  ✅ Removed $(basename "$link")"
   found=1
 done
 
+# Also remove old naming convention (design-studio-*)
+for link in "$SKILLS_TARGET"/design-studio-*; do
+  [ -L "$link" ] || [ -e "$link" ] || continue
+  rm -f "$link"
+  echo "  ✅ Removed $(basename "$link") (legacy)"
+  found=1
+done
+
 if [ "$found" -eq 0 ]; then
-  echo "  ⏭  No design-studio-* symlinks found"
+  echo "  ⏭  No ottho-design_* symlinks found"
 fi
 
 # ─── 2. Remove Frame0 from MCP config ────────────────────────────────
