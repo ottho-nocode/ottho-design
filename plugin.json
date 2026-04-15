@@ -1,0 +1,20 @@
+{
+  "name": "design-studio",
+  "version": "0.1.0",
+  "description": "Complete design workflow for Claude Code: wireframe → mockup → code",
+  "author": "thibaultmarty",
+  "license": "MIT",
+  "skills": [
+    "skills/design-system",
+    "skills/wireframe",
+    "skills/mockup",
+    "skills/component-registry",
+    "skills/design-to-code",
+    "skills/design-workflow"
+  ],
+  "mcp": {
+    "frame0": "mcp/frame0-config.json",
+    "pencil": "mcp/pencil-config.json"
+  },
+  "registry": "registry/registry.json"
+}
