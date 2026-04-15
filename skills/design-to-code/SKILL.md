@@ -11,7 +11,7 @@ Take a validated mockup and generate production code by matching sections to reg
 
 ## Prerequisites
 
-- **Component registry** with at least one registered collection (see `/components list` to verify).
+- **Component registry** at `~/.claude/plugins/design-studio/registry/` with at least one registered collection. Read `~/.claude/plugins/design-studio/registry/registry.json` to discover collections, then read each collection's `manifest.json` to find components.
 - **Design spec** from the mockup phase (design spec JSON with palette, typography, spacing, sections) **or** a screenshot/description of the target design.
 
 ---

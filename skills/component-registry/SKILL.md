@@ -7,6 +7,22 @@ description: Search, browse, and manage collections of UI components (HTML/React
 
 Manage an extensible registry of UI component collections. The registry indexes pre-built HTML and React components organized into collections, each with its own manifest. Use this skill to search, browse, add, and remove components or entire collections.
 
+## Plugin Root
+
+The registry lives at:
+
+```
+~/.claude/plugins/design-studio/registry/
+```
+
+**IMPORTANT:** All file paths in this skill are relative to `~/.claude/plugins/design-studio/`. When reading component files, always resolve paths from this root. For example, to read a component:
+
+```
+~/.claude/plugins/design-studio/registry/collections/aura/manifest.json
+```
+
+Start by reading `~/.claude/plugins/design-studio/registry/registry.json` to discover available collections, then read each collection's `manifest.json` to list components.
+
 ## Commands
 
 ### /components search `<query>`
