@@ -1,23 +1,24 @@
-# Design Studio
+# Ottho Design
 
 **Complete design workflow for Claude Code.**
 
-Design Studio is an open-source Claude Code plugin that orchestrates a full design-to-code pipeline: wireframe (Frame0) to mockup (Pencil.dev) to production code, with built-in design critique at every stage. It ships with an extensible component registry so you can reuse high-quality UI components instead of generating everything from scratch.
+Ottho Design is an open-source Claude Code plugin that orchestrates a full design-to-code pipeline in 10 steps: brief → inspirations → design system → wireframe (Frame0) → mockup (Pencil.dev) → code → refinement with a reusable component registry. A design critique based on 6 principles is applied at every stage.
 
 ---
 
-## Workflow
+## Workflow (10 steps)
 
 ```
-  BRIEF                 WIREFRAME               MOCKUP                  CODE
-  ------                ---------               ------                  ----
-  Gather context   -->  Generate layout    -->  High-fidelity      -->  Production
-  (audience, goal,      with Frame0 MCP         design with             HTML/React
-   brand, type)                                 Pencil.dev MCP          + TailwindCSS
+  1. BRIEF            Gather context (audience, goal, brand, type)
+  2. INSPIRATIONS     Collect visual references
+  3. DESIGN SYSTEM    Define colors, typography, spacing tokens
+  4. WIREFRAME        Low-fi layout with Frame0 MCP
+  5. MOCKUP           High-fidelity design with Pencil.dev MCP
+  6. CODE             Production HTML/React + TailwindCSS
+  7. REFINEMENT       Match & adapt components from the registry
 
-                   [design critique]       [design critique]       [design critique]
-                   6 principles check      6 principles check      6 principles check
-                   User approves           User approves           User approves
+  [design critique after each visual phase — 6 principles check,
+   user approval required before advancing]
 ```
 
 Each phase is validated against 6 design principles (visual hierarchy, spacing, color, typography, layout, responsive) before advancing. The user approves every transition.
@@ -27,7 +28,7 @@ Each phase is validated against 6 design principles (visual hierarchy, spacing, 
 ## Installation
 
 ```bash
-git clone https://github.com/thibaultmarty/design-studio.git ~/.claude/plugins/design-studio
+git clone https://github.com/ottho-nocode/ottho-design.git ~/.claude/plugins/design-studio
 ~/.claude/plugins/design-studio/install.sh
 ```
 
@@ -41,17 +42,10 @@ The install script:
 ## Quick Start
 
 ```
-/design
+/ottho-design_workflow
 ```
 
-The orchestrator will walk you through the full pipeline:
-
-1. **Brief** -- Answer 4 questions about what you are building
-2. **Wireframe** -- Frame0 generates the layout structure
-3. **Mockup** -- Pencil.dev creates a high-fidelity design
-4. **Code** -- Production HTML and React components are generated
-
-Each phase includes a design critique and requires your approval before advancing.
+The orchestrator will walk you through the 10-step pipeline from brief to refined code. Each visual phase includes a design critique and requires your approval before advancing.
 
 ---
 
@@ -59,14 +53,14 @@ Each phase includes a design critique and requires your approval before advancin
 
 | Command | Description |
 |---|---|
-| `/design` | Full pipeline: brief, wireframe, mockup, code with design critique at every stage |
-| `/wireframe` | Wireframe phase only (Frame0 MCP) |
-| `/mockup` | Mockup phase only (Pencil.dev MCP) |
-| `/design-to-code` | Code generation from an existing design or wireframe |
-| `/design-review` | Standalone design critique against 6 principles |
-| `/components search\|list\|add\|info` | Browse, search, and manage the component registry |
+| `/ottho-design_workflow` | Full 10-step pipeline: brief → inspirations → design system → wireframe → mockup → code → refinement |
+| `/ottho-design_wireframe` | Wireframe phase only (Frame0 MCP) |
+| `/ottho-design_mockup` | High-fidelity mockup phase only (Pencil.dev MCP) |
+| `/ottho-design_code` | Code generation from an existing design or wireframe |
+| `/ottho-design_review` | Standalone design critique against 6 principles |
+| `/ottho-design_components` | Browse, search, and manage the component registry |
 
-Each skill can run standalone or as part of the full `/design` pipeline.
+Each skill can run standalone or as part of the full `/ottho-design_workflow` pipeline.
 
 ---
 
